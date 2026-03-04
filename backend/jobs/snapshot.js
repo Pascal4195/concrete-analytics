@@ -1,4 +1,3 @@
-const cron = require('node-cron');
 const supabase = require('../lib/supabase');
 const { fetchAllVaultSnapshots } = require('../lib/onchain');
 const { computeMetrics, filterByWindow } = require('../metrics/engine');
@@ -54,13 +53,4 @@ async function runSnapshot() {
   }
 }
 
-function startCron() {
-  // Run every hour
-  cron.schedule('0 * * * *', runSnapshot);
-  console.log('Cron job scheduled: every hour');
-
-  // Run once immediately on startup
-  runSnapshot();
-}
-
-module.exports = { startCron, runSnapshot };
+module.exports = { runSnapshot };
