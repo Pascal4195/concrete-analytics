@@ -4,14 +4,13 @@
   --green: #00ff41;
   --green-dim: #00cc33;
   --green-glow: rgba(0, 255, 65, 0.4);
-  --green-faint: rgba(0, 255, 65, 0.06);
+  --green-faint: rgba(0, 255, 65, 0.08);
   --bg: #040d04;
   --bg2: #071007;
-  --card-bg: rgba(0, 18, 0, 0.9);
+  --card-bg: rgba(0, 18, 0, 0.75);
   --border: #00ff41;
   --text-dim: #009922;
   --red: #ff3333;
-  --yellow: #ffcc00;
 }
 
 * {
@@ -21,15 +20,34 @@
 }
 
 html, body {
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--green);
   font-family: 'Share Tech Mono', monospace;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Scanlines */
+/* Full page Moai background - repeated small statues */
+body {
+  background-image: url('/moai.png');
+  background-repeat: repeat;
+  background-size: 180px auto;
+  background-attachment: fixed;
+  background-position: center top;
+}
+
+/* Dark overlay so Moai is subtle and green-tinted */
 body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(4, 13, 4, 0.82);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scanlines on top of everything */
+body::after {
   content: '';
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -44,25 +62,23 @@ body::before {
   z-index: 9998;
 }
 
-/* Vignette */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
-  pointer-events: none;
-  z-index: 9997;
+/* Everything above the background overlay */
+header, main, footer {
+  position: relative;
+  z-index: 1;
 }
 
 .glow-text {
   text-shadow: 0 0 10px var(--green), 0 0 20px var(--green), 0 0 40px var(--green-dim);
 }
 
+/* Cards are semi-transparent so Moai shows through faintly */
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
   box-shadow: 0 0 10px var(--green-glow), inset 0 0 10px rgba(0,255,65,0.03);
   padding: 1.2rem;
+  backdrop-filter: blur(2px);
 }
 
 .card-label {
@@ -84,15 +100,9 @@ button {
   cursor: pointer;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--green-dim);
-}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green-dim); }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -113,9 +123,9 @@ button {
   animation: fadeIn 0.4s ease forwards;
 }
 
-/* ── MOBILE RESPONSIVE ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  .card-value {
-    font-size: 1rem;
+  body {
+    background-size: 100px auto;
   }
+  .card-value { font-size: 1rem; }
 }
