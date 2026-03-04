@@ -148,3 +148,44 @@
   border-left: 2px solid var(--red);
   background: rgba(255,50,50,0.03);
 }
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem 0.85rem 3rem;
+  }
+  .statusRow {
+    font-size: 0.52rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .statusTime {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.2rem;
+  }
+  .windowRow {
+    margin-bottom: 1rem;
+  }
+  .windowBtn {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.6rem;
+  }
+  .vaultInfo {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .vaultInfoAddr {
+    width: 100%;
+    font-size: 0.48rem;
+  }
+  .vaultInfoRisk {
+    margin-left: 0;
+  }
+  .narrativeText {
+    font-size: 0.6rem;
+    line-height: 1.7;
+  }
+  .disclaimer {
+    font-size: 0.55rem;
+  }
+}
