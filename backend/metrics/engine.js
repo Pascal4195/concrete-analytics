@@ -47,7 +47,7 @@ function computeMetrics(snapshots, window) {
   );
 
   return {
-    window,
+    time_window: window,
     avg_apy,
     apy_volatility,
     tvl_growth_rate,
