@@ -14,7 +14,8 @@
 }
 
 .card {
-  background: var(--card-bg);
+  background: rgba(0, 18, 0, 0.75);
+  backdrop-filter: blur(2px);
   border: 1px solid var(--text-dim);
   padding: 0.85rem 1rem;
   text-align: left;
