@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS vault_snapshots (
 CREATE TABLE IF NOT EXISTS vault_metrics (
   id SERIAL PRIMARY KEY,
   vault_address TEXT NOT NULL REFERENCES vaults(address),
-  window TEXT NOT NULL CHECK (window IN ('7d', '30d')),
+  time_window TEXT NOT NULL CHECK (time_window IN ('7d', '30d')),
   computed_at TIMESTAMPTZ DEFAULT NOW(),
   avg_apy NUMERIC,
   apy_volatility NUMERIC,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS vault_metrics (
 
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_snapshots_vault_time ON vault_snapshots(vault_address, timestamp DESC);
-CREATE INDEX IF NOT EXISTS idx_metrics_vault_window ON vault_metrics(vault_address, window, computed_at DESC);
+CREATE INDEX IF NOT EXISTS idx_metrics_vault_window ON vault_metrics(vault_address, time_window, computed_at DESC);
 
 -- Seed vaults
 INSERT INTO vaults (address, name, asset, strategy_type, risk_tier) VALUES
