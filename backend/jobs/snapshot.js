@@ -33,7 +33,7 @@ async function runSnapshot() {
         .eq('vault_address', snap.vault_address)
         .order('timestamp', { ascending: true });
 
-      for (const window of ['7d', '30d']) {
+      for (const window of ['1d', '7d', '30d', '90d']) {
         const filtered = filterByWindow(history || [], window);
         const metrics = computeMetrics(filtered, window);
 
