@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
+import Image from 'next/image';
 import Header from '../components/Header';
 import VaultSelector from '../components/VaultSelector';
 import MetricsPanel from '../components/MetricsPanel';
@@ -21,7 +22,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState('INITIALIZING...');
 
-  // Load vaults on mount
   useEffect(() => {
     axios.get(`${API}/api/vaults`)
       .then(r => {
@@ -32,11 +32,9 @@ export default function Home() {
       .catch(() => setStatus('BACKEND OFFLINE — CHECK RENDER LOGS'));
   }, []);
 
-  // Load selected vault data
   useEffect(() => {
     if (!selected) return;
     setLoading(true);
-
     Promise.all([
       axios.get(`${API}/api/metrics/${selected}?window=${window}`).catch(() => ({ data: null })),
       axios.get(`${API}/api/snapshots/${selected}?window=${window}`).catch(() => ({ data: [] })),
@@ -48,7 +46,6 @@ export default function Home() {
     });
   }, [selected, window]);
 
-  // Load all vault metrics for comparison
   useEffect(() => {
     axios.get(`${API}/api/metrics?window=${window}`)
       .then(r => setAllMetrics(r.data || []))
@@ -70,7 +67,6 @@ export default function Home() {
 
         <main className={styles.main}>
 
-          {/* Status bar */}
           <div className={styles.statusRow}>
             <span className={`${styles.statusDot} ${status === 'ONLINE' ? styles.online : styles.offline}`} />
             <span className={styles.statusText}>{status}</span>
@@ -81,7 +77,6 @@ export default function Home() {
             )}
           </div>
 
-          {/* Window selector */}
           <div className={styles.windowRow}>
             <span className={styles.windowLabel}>// TIME WINDOW:</span>
             {['7d', '30d'].map(w => (
@@ -95,10 +90,8 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Vault selector */}
           <VaultSelector vaults={vaults} selected={selected} onSelect={setSelected} />
 
-          {/* Selected vault info */}
           {selectedVault && (
             <div className={styles.vaultInfo}>
               <span className={styles.vaultInfoAsset}>{selectedVault.asset}</span>
@@ -109,33 +102,42 @@ export default function Home() {
 
           {loading && <div className={styles.loading}>FETCHING DATA<span className={styles.blink}>_</span></div>}
 
-          {/* Metrics */}
           <MetricsPanel metrics={metrics} window={window} />
-
-          {/* Charts */}
           <Charts snapshots={snapshots} />
-
-          {/* Comparison */}
           <VaultComparison allMetrics={allMetrics} vaults={vaults} window={window} />
 
-          {/* Narrative */}
           <div className={styles.narrative}>
             <div className={styles.narrativeLabel}>// ANALYTICAL INTENT</div>
             <div className={styles.narrativeText}>
-              This terminal validates Concrete's core thesis: one-click DeFi is only credible when backed by 
-              measurable capital efficiency. The Efficiency Index synthesizes yield consistency, risk-adjusted 
-              returns, and utilization stability into a single defensible score — answering not just "what is 
+              This terminal validates Concrete's core thesis: one-click DeFi is only credible when backed by
+              measurable capital efficiency. The Efficiency Index synthesizes yield consistency, risk-adjusted
+              returns, and utilization stability into a single defensible score — answering not just "what is
               the APY?" but "is this vault reliably delivering intelligent capital allocation?"
             </div>
           </div>
 
-          {/* Disclaimer */}
           <div className={styles.disclaimer}>
-            ⚠ NOT FINANCIAL ADVICE. DEFI CARRIES RISK OF TOTAL LOSS. DYOR. THIS IS A COMMUNITY ANALYTICS 
+            ⚠ NOT FINANCIAL ADVICE. DEFI CARRIES RISK OF TOTAL LOSS. DYOR. THIS IS A COMMUNITY ANALYTICS
             TOOL AND DOES NOT REPRESENT OFFICIAL CONCRETE PROTOCOL DATA.
           </div>
 
         </main>
+
+        {/* TM at bottom of page */}
+        <footer className={styles.footer}>
+          <a
+            href="https://x.com/zerodollar_Anon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.tm}
+          >
+            <Image src="/pfp.jpg" alt="@zerodollar_Anon" width={28} height={28} className={styles.pfp} />
+            <span>BUILT BY @zerodollar_Anon</span>
+          </a>
+          <span className={styles.footerRight}>
+            CONCRETE ANALYTICS // COMMUNITY CONTRIBUTION // ETH MAINNET
+          </span>
+        </footer>
       </div>
     </>
   );
