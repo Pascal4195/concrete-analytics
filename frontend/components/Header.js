@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.moaiBg}>
-        <Image src="/moai.jpg" alt="" fill style={{ objectFit: 'cover', opacity: 0.18 }} priority />
+        <Image src="/moai.png" alt="" fill style={{ objectFit: 'cover', opacity: 0.18 }} priority />
       </div>
 
       <div className={styles.statusBar}>
