@@ -78,3 +78,25 @@
   line-height: 1.5;
   font-style: italic;
 }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .cardValue {
+    font-size: 1.1rem;
+  }
+  .explain {
+    font-size: 0.55rem;
+  }
+  .why {
+    font-size: 0.52rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
