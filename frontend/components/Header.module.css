@@ -1,92 +1,221 @@
-.header {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 0;
-  border-bottom: 1px solid var(--green);
-  box-shadow: 0 4px 30px var(--green-glow);
+.page {
+  min-height: 100vh;
+  background: var(--bg);
 }
 
-.moaiBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.statusBar {
-  position: relative;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.7);
-  border-bottom: 1px solid var(--green-dim);
-  padding: 0.35rem 1.5rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  color: var(--text-dim);
-}
-
-.heroWrap {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 2.5rem 1rem 1.5rem;
-}
-
-.title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-
-.titleMain {
-  font-family: 'Orbitron', monospace;
-  font-weight: 900;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  color: var(--green);
-  text-shadow: 0 0 15px var(--green), 0 0 30px var(--green), 0 0 60px var(--green-dim);
-  letter-spacing: 0.05em;
-}
-
-.titleSub {
-  font-family: 'Orbitron', monospace;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 5vw, 3rem);
-  color: var(--green);
-  text-shadow: 0 0 10px var(--green), 0 0 25px var(--green-dim);
-  letter-spacing: 0.1em;
-}
-
-.subtitle {
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  color: var(--text-dim);
-  max-width: 700px;
+.main {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
 }
 
-.tm {
-  position: relative;
-  z-index: 2;
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,255,65,0.2);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: blink 2s infinite;
+}
+
+.online { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.offline { background: var(--red); box-shadow: 0 0 6px var(--red); }
+
+.statusText { color: var(--green); }
+
+.statusTime {
+  margin-left: auto;
+  color: var(--text-dim);
+}
+
+.windowRow {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  justify-content: center;
-  padding: 0.6rem 1rem;
-  background: rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.25rem;
+}
+
+.windowLabel {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  margin-right: 0.25rem;
+}
+
+.windowBtn {
+  background: transparent;
+  border: 1px solid var(--text-dim);
+  color: var(--text-dim);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  transition: all 0.2s;
+}
+
+.windowBtn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.windowActive {
+  border-color: var(--green) !important;
+  color: var(--green) !important;
+  box-shadow: 0 0 10px var(--green-glow);
+  background: rgba(0,255,65,0.05) !important;
+}
+
+.vaultInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0,255,65,0.04);
+  border-left: 2px solid var(--green);
+  font-size: 0.62rem;
+}
+
+.vaultInfoAsset {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.vaultInfoAddr {
+  color: var(--text-dim);
+  font-size: 0.55rem;
+  word-break: break-all;
+}
+
+.vaultInfoRisk {
+  margin-left: auto;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.loading {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.blink {
+  display: inline-block;
+  animation: blink 1s infinite;
+}
+
+.narrative {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,255,65,0.3);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.narrativeLabel {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.6rem;
+}
+
+.narrativeText {
+  font-size: 0.65rem;
+  color: rgba(0,255,65,0.7);
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+}
+
+.disclaimer {
+  font-size: 0.58rem;
+  color: var(--red);
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  padding: 0.75rem;
+  border-left: 2px solid var(--red);
+  background: rgba(255,50,50,0.03);
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1rem 0.85rem 3rem;
+  }
+  .statusRow {
+    font-size: 0.52rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .statusTime {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.2rem;
+  }
+  .windowRow {
+    margin-bottom: 1rem;
+  }
+  .windowBtn {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.6rem;
+  }
+  .vaultInfo {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .vaultInfoAddr {
+    width: 100%;
+    font-size: 0.48rem;
+  }
+  .vaultInfoRisk {
+    margin-left: 0;
+  }
+  .narrativeText {
+    font-size: 0.6rem;
+    line-height: 1.7;
+  }
+  .disclaimer {
+    font-size: 0.55rem;
+  }
+}
+
+/* FOOTER TM */
+.footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
   border-top: 1px solid rgba(0, 255, 65, 0.2);
+  background: rgba(0, 0, 0, 0.7);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tm {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   color: var(--text-dim);
   text-decoration: none;
-  transition: color 0.2s, background 0.2s;
+  transition: color 0.2s;
 }
 
-.tm:hover {
-  color: var(--green);
-  background: rgba(0, 255, 65, 0.05);
-}
+.tm:hover { color: var(--green); }
 
 .pfp {
   border-radius: 50%;
@@ -94,33 +223,13 @@
   object-fit: cover;
 }
 
+.footerRight {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: rgba(0, 255, 65, 0.3);
+}
+
 @media (max-width: 768px) {
-  .statusBar {
-    font-size: 0.5rem;
-    padding: 0.3rem 0.75rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .heroWrap {
-    padding: 1.5rem 1rem 1rem;
-  }
-  .titleMain {
-    font-size: clamp(2rem, 12vw, 3rem);
-  }
-  .titleSub {
-    font-size: clamp(1rem, 7vw, 1.8rem);
-  }
-  .subtitle {
-    font-size: 0.55rem;
-    letter-spacing: 0.08em;
-  }
-  .tm {
-    font-size: 0.55rem;
-    padding: 0.5rem;
-  }
-  .pfp {
-    width: 24px;
-    height: 24px;
-  }
+  .footer { justify-content: center; }
+  .footerRight { display: none; }
 }
