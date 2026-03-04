@@ -93,3 +93,34 @@
   border: 1px solid var(--green-dim);
   object-fit: cover;
 }
+
+@media (max-width: 768px) {
+  .statusBar {
+    font-size: 0.5rem;
+    padding: 0.3rem 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .heroWrap {
+    padding: 1.5rem 1rem 1rem;
+  }
+  .titleMain {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+  .titleSub {
+    font-size: clamp(1rem, 7vw, 1.8rem);
+  }
+  .subtitle {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+  }
+  .tm {
+    font-size: 0.55rem;
+    padding: 0.5rem;
+  }
+  .pfp {
+    width: 24px;
+    height: 24px;
+  }
+}
