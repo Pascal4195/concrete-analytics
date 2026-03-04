@@ -11,13 +11,21 @@ import styles from './index.module.css';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
+const TICKER_ITEMS = [
+  { label: 'USDT VAULT', key: '0x0E609b710da5e0AA476224b6c0e5445cCc21251E' },
+  { label: 'WeETH VAULT', key: '0xB9DC54c8261745CB97070CeFBE3D3d815aee8f20' },
+  { label: 'WBTC VAULT', key: '0xacce65B9dB4810125adDEa9797BaAaaaD2B73788' },
+  { label: 'frxUSD+ VAULT', key: '0xCF9ceAcf5c7d6D2FE6e8650D81FbE4240c72443f' },
+];
+
 export default function Home() {
   const [vaults, setVaults] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [window, setWindow] = useState('7d');
+  const [timeWindow, setTimeWindow] = useState('7d');
   const [metrics, setMetrics] = useState(null);
   const [snapshots, setSnapshots] = useState([]);
   const [allMetrics, setAllMetrics] = useState([]);
+  const [latestSnapshots, setLatestSnapshots] = useState([]);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState('INITIALIZING...');
@@ -30,29 +38,38 @@ export default function Home() {
         setStatus('ONLINE');
       })
       .catch(() => setStatus('BACKEND OFFLINE — CHECK RENDER LOGS'));
+
+    axios.get(`${API}/api/snapshots/all/latest`)
+      .then(r => setLatestSnapshots(r.data || []))
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
     if (!selected) return;
     setLoading(true);
     Promise.all([
-      axios.get(`${API}/api/metrics/${selected}?window=${window}`).catch(() => ({ data: null })),
-      axios.get(`${API}/api/snapshots/${selected}?window=${window}`).catch(() => ({ data: [] })),
+      axios.get(`${API}/api/metrics/${selected}?window=${timeWindow}`).catch(() => ({ data: null })),
+      axios.get(`${API}/api/snapshots/${selected}?window=${timeWindow}`).catch(() => ({ data: [] })),
     ]).then(([m, s]) => {
       setMetrics(m.data);
       setSnapshots(s.data || []);
       setLastUpdated(new Date().toISOString());
       setLoading(false);
     });
-  }, [selected, window]);
+  }, [selected, timeWindow]);
 
   useEffect(() => {
-    axios.get(`${API}/api/metrics?window=${window}`)
+    axios.get(`${API}/api/metrics?window=${timeWindow}`)
       .then(r => setAllMetrics(r.data || []))
       .catch(() => setAllMetrics([]));
-  }, [window]);
+  }, [timeWindow]);
 
   const selectedVault = vaults.find(v => v.address === selected);
+
+  // Build ticker text from latest snapshots
+  const tickerText = latestSnapshots.length > 0
+    ? latestSnapshots.map(s => `${s.name.replace('Concrete ', '').replace(' Vault', '')} · APY ${parseFloat(s.latest?.apy || 0).toFixed(2)}% · TVL $${(parseFloat(s.latest?.tvl || 0) / 1000000).toFixed(2)}M`).join('   ·   ')
+    : 'USDT VAULT · WeETH VAULT · WBTC VAULT · frxUSD+ VAULT · FETCHING LIVE DATA...';
 
   return (
     <>
@@ -64,6 +81,13 @@ export default function Home() {
 
       <div className={styles.page}>
         <Header />
+
+        {/* LIVE TICKER */}
+        <div className={styles.tickerWrap}>
+          <div className={styles.ticker}>
+            <span>{tickerText}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{tickerText}</span>
+          </div>
+        </div>
 
         <main className={styles.main}>
 
@@ -79,11 +103,11 @@ export default function Home() {
 
           <div className={styles.windowRow}>
             <span className={styles.windowLabel}>// TIME WINDOW:</span>
-            {['7d', '30d'].map(w => (
+            {['1d', '7d', '30d', '90d'].map(w => (
               <button
                 key={w}
-                className={`${styles.windowBtn} ${window === w ? styles.windowActive : ''}`}
-                onClick={() => setWindow(w)}
+                className={`${styles.windowBtn} ${timeWindow === w ? styles.windowActive : ''}`}
+                onClick={() => setTimeWindow(w)}
               >
                 {w.toUpperCase()}
               </button>
@@ -102,9 +126,9 @@ export default function Home() {
 
           {loading && <div className={styles.loading}>FETCHING DATA<span className={styles.blink}>_</span></div>}
 
-          <MetricsPanel metrics={metrics} window={window} />
+          <MetricsPanel metrics={metrics} window={timeWindow} />
           <Charts snapshots={snapshots} />
-          <VaultComparison allMetrics={allMetrics} vaults={vaults} window={window} />
+          <VaultComparison allMetrics={allMetrics} vaults={vaults} window={timeWindow} />
 
           <div className={styles.narrative}>
             <div className={styles.narrativeLabel}>// ANALYTICAL INTENT</div>
@@ -123,7 +147,6 @@ export default function Home() {
 
         </main>
 
-        {/* TM at bottom of page */}
         <footer className={styles.footer}>
           <a
             href="https://x.com/zerodollar_Anon"
