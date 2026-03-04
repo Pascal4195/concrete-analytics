@@ -38,7 +38,7 @@ router.get('/metrics/:address', async (req, res) => {
     .from('vault_metrics')
     .select('*')
     .eq('vault_address', address)
-    .eq('window', window)
+    .eq('time_window', window)
     .order('computed_at', { ascending: false })
     .limit(1)
     .single();
@@ -60,7 +60,7 @@ router.get('/metrics', async (req, res) => {
       .from('vault_metrics')
       .select('*')
       .eq('vault_address', vault.address)
-      .eq('window', window)
+      .eq('time_window', window)
       .order('computed_at', { ascending: false })
       .limit(1)
       .single();
