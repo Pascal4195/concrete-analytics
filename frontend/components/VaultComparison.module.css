@@ -17,7 +17,8 @@
 }
 
 .inner {
-  background: var(--card-bg);
+  background: rgba(0, 18, 0, 0.75);
+  backdrop-filter: blur(2px);
   border: 1px solid var(--border);
   box-shadow: 0 0 10px var(--green-glow);
   padding: 1.25rem;
