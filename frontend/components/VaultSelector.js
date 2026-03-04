@@ -18,7 +18,7 @@ export default function VaultSelector({ vaults, selected, onSelect }) {
             onClick={() => onSelect(v.address)}
           >
             <div className={styles.asset}>{v.asset}</div>
-            <div className={styles.name}>{v.name.replace('Concrete ', '').replace(' Vault', '')}</div>
+            <div className={styles.name}>{v.strategy_type}</div>
             <div className={styles.risk} style={{ color: RISK_COLORS[v.risk_tier] || '#00ff41' }}>
               RISK: {v.risk_tier}
             </div>
