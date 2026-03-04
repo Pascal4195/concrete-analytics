@@ -53,3 +53,16 @@
   font-size: 0.55rem;
   letter-spacing: 0.15em;
 }
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  .card {
+    padding: 0.7rem 0.75rem;
+  }
+  .asset {
+    font-size: 0.85rem;
+  }
+}
