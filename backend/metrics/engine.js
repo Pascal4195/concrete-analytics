@@ -1,6 +1,6 @@
 /**
  * Concrete Analytics - Metrics Engine
- * 
+ *
  * Formulas:
  * - Rolling Avg APY: mean(apy[]) over window
  * - APY Volatility: stddev(apy[]) over window
@@ -38,13 +38,16 @@ function computeMetrics(snapshots, window) {
   const util_mean = mean(utils);
   const util_std = stddev(utils);
   const utilization_stability = util_mean > 0
-    ? parseFloat((1 - util_std / util_mean).toFixed(4))
+    ? parseFloat(Math.min(1, Math.max(0, 1 - util_std / util_mean)).toFixed(4))
     : 0;
 
-  // Efficiency Index: rewards yield, penalizes volatility, weights by utilization consistency
-  const efficiency_index = parseFloat(
-    ((avg_apy / (1 + apy_volatility)) * Math.max(0, utilization_stability) * 100).toFixed(4)
-  );
+  // Efficiency Index — capped at 100 pts max for sanity
+  // Needs at least 2 snapshots to be meaningful
+  const raw_efficiency = snapshots.length < 2
+    ? 0
+    : (avg_apy / (1 + apy_volatility)) * utilization_stability * 100;
+
+  const efficiency_index = parseFloat(Math.min(100, Math.max(0, raw_efficiency)).toFixed(4));
 
   return {
     time_window: window,
@@ -58,7 +61,8 @@ function computeMetrics(snapshots, window) {
 }
 
 function getWindowDays(window) {
-  return window === '7d' ? 7 : 30;
+  const map = { '1d': 1, '7d': 7, '30d': 30, '90d': 90 };
+  return map[window] || 7;
 }
 
 function filterByWindow(snapshots, window) {
