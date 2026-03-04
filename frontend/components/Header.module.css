@@ -1,0 +1,95 @@
+.header {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  border-bottom: 1px solid var(--green);
+  box-shadow: 0 4px 30px var(--green-glow);
+}
+
+.moaiBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.statusBar {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid var(--green-dim);
+  padding: 0.35rem 1.5rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+}
+
+.heroWrap {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.titleMain {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--green);
+  text-shadow: 0 0 15px var(--green), 0 0 30px var(--green), 0 0 60px var(--green-dim);
+  letter-spacing: 0.05em;
+}
+
+.titleSub {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  color: var(--green);
+  text-shadow: 0 0 10px var(--green), 0 0 25px var(--green-dim);
+  letter-spacing: 0.1em;
+}
+
+.subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.tm {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 255, 65, 0.2);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+}
+
+.tm:hover {
+  color: var(--green);
+  background: rgba(0, 255, 65, 0.05);
+}
+
+.pfp {
+  border-radius: 50%;
+  border: 1px solid var(--green-dim);
+  object-fit: cover;
+}

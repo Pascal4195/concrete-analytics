@@ -1,0 +1,54 @@
+.wrap { margin-bottom: 2rem; }
+
+.label {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.75rem;
+}
+
+.empty {
+  border: 1px solid var(--text-dim);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.inner {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 10px var(--green-glow);
+  padding: 1.25rem;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0,255,65,0.15);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.eff {
+  color: var(--text-dim);
+  font-size: 0.55rem;
+}
