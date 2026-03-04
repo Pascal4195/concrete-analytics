@@ -112,3 +112,10 @@ button {
 .fade-in {
   animation: fadeIn 0.4s ease forwards;
 }
+
+/* ── MOBILE RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .card-value {
+    font-size: 1rem;
+  }
+}
