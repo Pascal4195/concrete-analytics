@@ -41,9 +41,11 @@ body {
   line-height: 1;
   width: 100px;
   text-align: center;
-  opacity: 0.12;
+  opacity: 0.18;
   filter: sepia(1) hue-rotate(80deg) saturate(5) brightness(0.8)
-    drop-shadow(0 0 6px #00ff41);
+    drop-shadow(0 0 12px #00ff41)
+    drop-shadow(0 0 24px #00ff41)
+    drop-shadow(0 0 4px #ffffff);
   flex-shrink: 0;
 }
 
@@ -51,7 +53,7 @@ body {
 .moai-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 13, 4, 0.70);
+  background: rgba(4, 13, 4, 0.55);
   pointer-events: none;
   z-index: 1;
 }
