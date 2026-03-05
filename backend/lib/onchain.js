@@ -1,6 +1,5 @@
 const { ethers } = require('ethers');
 
-// ERC-4626 minimal ABI + extras for Concrete vaults
 const VAULT_ABI = [
   'function totalAssets() view returns (uint256)',
   'function totalSupply() view returns (uint256)',
@@ -32,14 +31,14 @@ async function fetchVaultSnapshot(vaultConfig, provider) {
   try {
     const contract = new ethers.Contract(vaultConfig.address, VAULT_ABI, provider);
     const block = await provider.getBlock('latest');
+    const decimals = vaultConfig.decimals;
 
     const totalAssets = await contract.totalAssets();
     const totalSupply = await contract.totalSupply();
 
-    const decimals = vaultConfig.decimals;
     const tvl = parseFloat(ethers.formatUnits(totalAssets, decimals));
 
-    // Share price: how many assets per 1 share (normalized to 1e18 shares)
+    // Share price: assets per 1 share
     let sharePrice = 1.0;
     if (totalSupply > 0n) {
       const oneShare = ethers.parseUnits('1', decimals);
@@ -51,10 +50,14 @@ async function fetchVaultSnapshot(vaultConfig, provider) {
       }
     }
 
-    // Utilization: real onchain calculation
-    // idle = vault's direct token balance (capital not yet deployed to any strategy)
-    // deployed = totalAssets - idle
-    // utilization = deployed / totalAssets
+    // APY: store share price for now
+    // Real APY is computed by comparing share prices across snapshots in the metrics engine
+    // Single snapshot APY = 0 (can't compute rate of change without history)
+    const apy = sharePrice > 1.0
+      ? parseFloat(((sharePrice - 1.0) * 100).toFixed(4)) // simple return % not annualized
+      : 0;
+
+    // Utilization: real onchain
     let utilization = 0;
     try {
       const assetAddress = await contract.asset();
@@ -62,21 +65,17 @@ async function fetchVaultSnapshot(vaultConfig, provider) {
       const idleAssets = await assetContract.balanceOf(vaultConfig.address);
       const idle = parseFloat(ethers.formatUnits(idleAssets, decimals));
       const deployed = Math.max(0, tvl - idle);
-      utilization = tvl > 0 ? deployed / tvl : 0;
+      utilization = tvl > 0 ? parseFloat((deployed / tvl).toFixed(4)) : 0;
     } catch (err) {
-      console.warn(`Could not fetch idle balance for ${vaultConfig.address}, defaulting utilization to 0:`, err.message);
+      console.warn(`Could not fetch idle balance for ${vaultConfig.address}:`, err.message);
     }
-
-    // APY: derived from share price (will improve accuracy over time with historical data)
-    // For first snapshot, use a baseline from share price
-    const apy = sharePrice > 1 ? (sharePrice - 1) * 52 * 100 : 0; // annualized weekly estimate
 
     return {
       vault_address: vaultConfig.address,
       timestamp: new Date().toISOString(),
-      apy: parseFloat(apy.toFixed(4)),
+      apy,
       tvl: parseFloat(tvl.toFixed(2)),
-      utilization: parseFloat(utilization.toFixed(4)),
+      utilization,
       block_number: block.number,
       raw_data: {
         totalAssets: totalAssets.toString(),
@@ -93,12 +92,10 @@ async function fetchVaultSnapshot(vaultConfig, provider) {
 async function fetchAllVaultSnapshots() {
   const provider = await getProvider();
   const results = [];
-
   for (const vault of VAULTS) {
     const snapshot = await fetchVaultSnapshot(vault, provider);
     if (snapshot) results.push(snapshot);
   }
-
   return results;
 }
 
