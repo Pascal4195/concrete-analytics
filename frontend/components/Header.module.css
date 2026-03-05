@@ -10,7 +10,8 @@
 .statusBar {
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0, 255, 65, 0.25);
   padding: 0.35rem 1.5rem;
   font-size: 0.6rem;
