@@ -2,12 +2,12 @@
 
 :root {
   --green: #00ff41;
-  --green-dim: #00cc33;
-  --green-glow: rgba(0, 255, 65, 0.4);
+  --green-dim: #00dd33;
+  --green-glow: rgba(0, 255, 65, 0.5);
   --bg: #040d04;
   --card-bg: rgba(0, 10, 0, 0.65);
   --border: #00ff41;
-  --text-dim: #009922;
+  --text-dim: #00cc44;
   --red: #ff3333;
 }
 
@@ -23,26 +23,26 @@ body {
   background-color: #040d04;
 }
 
-/* Moai image background */
+/* Tiled moai image background */
 .moai-bg {
   position: fixed;
   inset: 0;
   background-image: url('/moai.png');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background-size: 280px auto;
+  background-repeat: repeat;
+  background-position: top left;
   pointer-events: none;
   z-index: 0;
-  filter: sepia(1) hue-rotate(80deg) saturate(4) brightness(0.55)
-    drop-shadow(0 0 20px #00ff41)
-    drop-shadow(0 0 60px #00cc33);
+  filter: sepia(1) hue-rotate(80deg) saturate(5) brightness(0.6)
+    drop-shadow(0 0 15px #00ff41)
+    drop-shadow(0 0 40px #00cc33);
 }
 
 /* Dark overlay above moai */
 .moai-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 13, 4, 0.60);
+  background: rgba(4, 13, 4, 0.55);
   pointer-events: none;
   z-index: 1;
 }
@@ -95,7 +95,6 @@ button {
 
 @media (max-width: 768px) {
   .moai-bg {
-    background-size: cover;
-    background-position: center center;
+    background-size: 180px auto;
   }
 }
