@@ -4,9 +4,8 @@
   --green: #00ff41;
   --green-dim: #00cc33;
   --green-glow: rgba(0, 255, 65, 0.4);
-  --green-faint: rgba(0, 255, 65, 0.08);
   --bg: #040d04;
-  --card-bg: rgba(0, 18, 0, 0.78);
+  --card-bg: rgba(0, 18, 0, 0.82);
   --border: #00ff41;
   --text-dim: #009922;
   --red: #ff3333;
@@ -14,40 +13,47 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { height: 100%; }
+html, body { height: 100%; }
 
 body {
-  min-height: 100%;
+  min-height: 100vh;
   color: var(--green);
   font-family: 'Share Tech Mono', monospace;
   overflow-x: hidden;
+  /* Dark base */
   background-color: #040d04;
 }
 
-/* Glowing green tiled Moai background */
-body::before {
-  content: '';
+/* Glowing green tiled Moai — sits behind everything */
+.moai-bg {
   position: fixed;
   inset: 0;
   background-image: url('/moai.png');
   background-repeat: repeat;
-  background-size: 140px auto;
-  /* Green glow filter on the moai */
-  filter: 
+  background-size: 130px auto;
+  filter:
     grayscale(100%)
-    brightness(0.4)
+    brightness(0.35)
     sepia(100%)
     hue-rotate(80deg)
-    saturate(800%)
-    drop-shadow(0 0 6px #00ff41);
-  opacity: 0.18;
+    saturate(900%)
+    drop-shadow(0 0 5px #00ff41);
+  opacity: 0.15;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Dark overlay on top of moai to keep it subtle */
-body::after {
-  content: '';
+/* Dark overlay above moai */
+.moai-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 13, 4, 0.72);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Scanlines */
+.scanlines {
   position: fixed;
   inset: 0;
   background: repeating-linear-gradient(
@@ -58,13 +64,14 @@ body::after {
     rgba(0, 0, 0, 0.06) 4px
   );
   pointer-events: none;
-  z-index: 9998;
+  z-index: 2;
 }
 
-/* All content sits above background */
+/* All page content above layers */
 #__next {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+  min-height: 100vh;
 }
 
 button {
@@ -92,5 +99,5 @@ button {
 }
 
 @media (max-width: 768px) {
-  body::before { background-size: 90px auto; }
+  .moai-bg { background-size: 90px auto; }
 }
