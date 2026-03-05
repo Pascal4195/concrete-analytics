@@ -20,34 +20,38 @@ body {
   color: var(--green);
   font-family: 'Share Tech Mono', monospace;
   overflow-x: hidden;
-  /* Dark base */
   background-color: #040d04;
 }
 
-/* Glowing green tiled Moai — sits behind everything */
+/* Moai emoji tiled background */
 .moai-bg {
   position: fixed;
   inset: 0;
-  background-image: url('/moai.png');
-  background-repeat: repeat;
-  background-size: 130px auto;
-  filter:
-    grayscale(100%)
-    brightness(0.35)
-    sepia(100%)
-    hue-rotate(80deg)
-    saturate(900%)
-    drop-shadow(0 0 5px #00ff41);
-  opacity: 0.15;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0px;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
+}
+
+.moai-emoji {
+  font-size: 80px;
+  line-height: 1;
+  width: 100px;
+  text-align: center;
+  opacity: 0.12;
+  filter: sepia(1) hue-rotate(80deg) saturate(5) brightness(0.8)
+    drop-shadow(0 0 6px #00ff41);
+  flex-shrink: 0;
 }
 
 /* Dark overlay above moai */
 .moai-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 13, 4, 0.72);
+  background: rgba(4, 13, 4, 0.70);
   pointer-events: none;
   z-index: 1;
 }
@@ -99,5 +103,5 @@ button {
 }
 
 @media (max-width: 768px) {
-  .moai-bg { background-size: 90px auto; }
+  .moai-emoji { font-size: 60px; width: 75px; }
 }
