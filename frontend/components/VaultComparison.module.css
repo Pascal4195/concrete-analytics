@@ -17,8 +17,8 @@
 }
 
 .inner {
-  background: rgba(0, 18, 0, 0.75);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 10, 0, 0.65);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   box-shadow: 0 0 10px var(--green-glow);
   padding: 1.25rem;
