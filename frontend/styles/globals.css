@@ -68,6 +68,14 @@ button { font-family: 'Share Tech Mono', monospace; cursor: pointer; }
 ::-webkit-scrollbar-track { background: #0D0D0D; }
 ::-webkit-scrollbar-thumb { background: #00FF41; }
 
+/* DISABLE backdrop-filter on mobile — it darkens cards when static */
+@media (max-width: 768px) {
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
