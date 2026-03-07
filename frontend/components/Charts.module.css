@@ -2,17 +2,18 @@
 
 .label {
   font-size: 0.65rem;
-  color: var(--text-dim);
+  color: var(--green);
   letter-spacing: 0.2em;
   margin-bottom: 0.75rem;
+  text-shadow: 0 0 6px var(--green-glow);
 }
 
 .empty {
-  border: 1px solid var(--text-dim);
+  border: 1px solid var(--green);
   padding: 2rem;
   text-align: center;
   font-size: 0.7rem;
-  color: var(--text-dim);
+  color: var(--green);
   letter-spacing: 0.1em;
 }
 
@@ -31,8 +32,8 @@
 .chartCard {
   background: rgba(0, 10, 0, 0.65);
   backdrop-filter: blur(10px);
-  border: 1px solid var(--border);
-  box-shadow: 0 0 8px var(--green-glow);
+  border: 1px solid var(--green);
+  box-shadow: 0 0 10px var(--green-glow);
   padding: 1rem;
   animation: fadeIn 0.5s ease forwards;
 }
@@ -43,28 +44,33 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   margin-bottom: 0.2rem;
+  color: var(--green);
+  text-shadow: 0 0 8px var(--green-glow);
 }
 
 .chartDesc {
   font-size: 0.58rem;
-  color: var(--text-dim);
+  color: var(--green);
   letter-spacing: 0.08em;
   margin-bottom: 0.75rem;
+  opacity: 0.75;
 }
 
 .tooltip {
-  background: rgba(0, 10, 0, 0.85);
+  background: rgba(0, 10, 0, 0.9);
   border: 1px solid var(--green);
   padding: 0.5rem 0.75rem;
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.65rem;
+  box-shadow: 0 0 10px var(--green-glow);
 }
 
 .tooltipTime {
-  color: var(--text-dim);
+  color: var(--green);
   font-size: 0.58rem;
   margin-bottom: 0.25rem;
   letter-spacing: 0.1em;
+  opacity: 0.75;
 }
 
 @media (max-width: 768px) {
@@ -72,10 +78,6 @@
     grid-template-columns: 1fr;
     gap: 0.6rem;
   }
-  .chartCard {
-    padding: 0.85rem;
-  }
-  .chartTitle {
-    font-size: 0.62rem;
-  }
+  .chartCard { padding: 0.85rem; }
+  .chartTitle { font-size: 0.62rem; }
 }
