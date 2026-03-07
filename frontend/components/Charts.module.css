@@ -2,19 +2,19 @@
 
 .label {
   font-size: 0.65rem;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.6);
   letter-spacing: 0.2em;
   margin-bottom: 0.75rem;
-  text-shadow: 0 0 6px var(--green-glow);
 }
 
 .empty {
-  border: 1px solid var(--green);
+  border: 4px solid rgba(0, 255, 65, 0.3);
   padding: 2rem;
   text-align: center;
   font-size: 0.7rem;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.5);
   letter-spacing: 0.1em;
+  background: rgba(13, 13, 13, 0.75);
 }
 
 .blink {
@@ -30,12 +30,17 @@
 }
 
 .chartCard {
-  background: rgba(0, 10, 0, 0.70);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--green);
-  box-shadow: 0 0 10px var(--green-glow);
+  background: rgba(13, 13, 13, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 4px solid rgba(0, 255, 65, 0.3);
   padding: 1rem;
   animation: fadeIn 0.5s ease forwards;
+  transition: border-color 0.15s ease;
+}
+
+.chartCard:hover {
+  border-color: #00FF41;
 }
 
 .chartTitle {
@@ -44,33 +49,31 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   margin-bottom: 0.2rem;
-  color: var(--green);
-  text-shadow: 0 0 8px var(--green-glow);
+  color: #00FF41;
+  text-shadow: 0 0 8px rgba(0,255,65,0.5);
 }
 
 .chartDesc {
   font-size: 0.58rem;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.45);
   letter-spacing: 0.08em;
   margin-bottom: 0.75rem;
-  opacity: 0.75;
 }
 
 .tooltip {
-  background: rgba(0, 10, 0, 0.92);
-  border: 1px solid var(--green);
+  background: rgba(13, 13, 13, 0.95);
+  border: 2px solid #00FF41;
   padding: 0.5rem 0.75rem;
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.65rem;
-  box-shadow: 0 0 10px var(--green-glow);
+  color: #00FF41;
 }
 
 .tooltipTime {
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.5);
   font-size: 0.58rem;
   margin-bottom: 0.25rem;
   letter-spacing: 0.1em;
-  opacity: 0.75;
 }
 
 @media (max-width: 768px) {
