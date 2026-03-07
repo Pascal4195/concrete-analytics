@@ -21,11 +21,22 @@ const VAULT_NOTES = {
 };
 
 export default function VaultSelector({ vaults, selected, onSelect }) {
-  const [flashing, setFlashing] = useState(null);
+  const [scanning, setScanning] = useState(null);
+  const [glitching, setGlitching] = useState(null);
 
   function handleSelect(address) {
-    setFlashing(address);
-    setTimeout(() => setFlashing(null), 400);
+    if (address === selected) return;
+
+    // glitch flicker first (0-150ms)
+    setGlitching(address);
+    setTimeout(() => setGlitching(null), 150);
+
+    // then scan sweep (150-600ms)
+    setTimeout(() => {
+      setScanning(address);
+      setTimeout(() => setScanning(null), 500);
+    }, 100);
+
     onSelect(address);
   }
 
@@ -35,17 +46,24 @@ export default function VaultSelector({ vaults, selected, onSelect }) {
       <div className={styles.grid}>
         {vaults.map(v => {
           const note = VAULT_NOTES[v.address];
-          const isFlashing = flashing === v.address;
+          const isScanning = scanning === v.address;
+          const isGlitching = glitching === v.address;
+          const isActive = selected === v.address;
+
           return (
             <button
               key={v.address}
-              className={`
-                ${styles.card}
-                ${selected === v.address ? styles.active : ''}
-                ${isFlashing ? 'vault-selecting' : ''}
-              `}
+              className={[
+                styles.card,
+                isActive    ? styles.active    : '',
+                isScanning  ? styles.scanning  : '',
+                isGlitching ? styles.glitching : '',
+              ].join(' ')}
               onClick={() => handleSelect(v.address)}
             >
+              {/* scan sweep line */}
+              {isScanning && <div className={styles.scanLine} />}
+
               <div className={styles.asset}>{v.asset}</div>
 
               {note?.type === 'institutional' && (
