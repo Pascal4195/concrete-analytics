@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './VaultSelector.module.css';
 
 const RISK_COLORS = {
@@ -20,17 +21,30 @@ const VAULT_NOTES = {
 };
 
 export default function VaultSelector({ vaults, selected, onSelect }) {
+  const [flashing, setFlashing] = useState(null);
+
+  function handleSelect(address) {
+    setFlashing(address);
+    setTimeout(() => setFlashing(null), 400);
+    onSelect(address);
+  }
+
   return (
     <div className={styles.wrap}>
       <div className={styles.label}>// SELECT VAULT</div>
       <div className={styles.grid}>
         {vaults.map(v => {
           const note = VAULT_NOTES[v.address];
+          const isFlashing = flashing === v.address;
           return (
             <button
               key={v.address}
-              className={`${styles.card} ${selected === v.address ? styles.active : ''}`}
-              onClick={() => onSelect(v.address)}
+              className={`
+                ${styles.card}
+                ${selected === v.address ? styles.active : ''}
+                ${isFlashing ? 'vault-selecting' : ''}
+              `}
+              onClick={() => handleSelect(v.address)}
             >
               <div className={styles.asset}>{v.asset}</div>
 
