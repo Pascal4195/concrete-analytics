@@ -30,7 +30,7 @@
 }
 
 .chartCard {
-  background: rgba(0, 10, 0, 0.65);
+  background: rgba(0, 10, 0, 0.70);
   backdrop-filter: blur(10px);
   border: 1px solid var(--green);
   box-shadow: 0 0 10px var(--green-glow);
@@ -57,7 +57,7 @@
 }
 
 .tooltip {
-  background: rgba(0, 10, 0, 0.9);
+  background: rgba(0, 10, 0, 0.92);
   border: 1px solid var(--green);
   padding: 0.5rem 0.75rem;
   font-family: 'Share Tech Mono', monospace;
@@ -74,10 +74,7 @@
 }
 
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 0.6rem;
-  }
+  .grid { grid-template-columns: 1fr; gap: 0.6rem; }
   .chartCard { padding: 0.85rem; }
   .chartTitle { font-size: 0.62rem; }
 }
