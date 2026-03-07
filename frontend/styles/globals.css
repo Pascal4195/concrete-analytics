@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
 
 :root {
-  --green: #00ff41;
-  --green-dim: #00dd33;
-  --green-glow: rgba(0, 255, 65, 0.55);
-  --bg: #040d04;
-  --card-bg: rgba(0, 10, 0, 0.65);
-  --border: #00ff41;
-  --text-dim: #00cc33;
-  --red: #ff4444;
+  --green: #00FF41;
+  --green-dim: #00cc33;
+  --green-glow: rgba(0, 255, 65, 0.4);
+  --bg: #0D0D0D;
+  --card-bg: rgba(13, 13, 13, 0.75);
+  --border: #00FF41;
+  --text-dim: rgba(0, 255, 65, 0.5);
+  --red: #FF3131;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,10 +17,10 @@ html, body { height: 100%; }
 
 body {
   min-height: 100vh;
-  color: var(--green);
+  background: #0D0D0D;
+  color: #00FF41;
   font-family: 'Share Tech Mono', monospace;
   overflow-x: hidden;
-  background-color: #040d04;
 }
 
 /* Tiled moai image background */
@@ -28,21 +28,21 @@ body {
   position: fixed;
   inset: 0;
   background-image: url('/moai.png');
-  background-size: 280px auto;
+  background-size: 180px 180px;
   background-repeat: repeat;
   background-position: top left;
   pointer-events: none;
   z-index: 0;
-  filter: sepia(1) hue-rotate(80deg) saturate(5) brightness(0.6)
-    drop-shadow(0 0 15px #00ff41)
-    drop-shadow(0 0 40px #00cc33);
+  mix-blend-mode: screen;
+  filter: sepia(1) hue-rotate(90deg) saturate(4) brightness(0.4);
+  image-rendering: crisp-edges;
 }
 
 /* Dark overlay above moai */
 .moai-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 13, 4, 0.55);
+  background: rgba(13, 13, 13, 0.60);
   pointer-events: none;
   z-index: 1;
 }
@@ -53,10 +53,8 @@ body {
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.06) 2px,
-    rgba(0, 0, 0, 0.06) 4px
+    transparent, transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px, rgba(0, 0, 0, 0.08) 4px
   );
   pointer-events: none;
   z-index: 2;
@@ -73,9 +71,9 @@ button {
   cursor: pointer;
 }
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #040d04; }
-::-webkit-scrollbar-thumb { background: var(--green-dim); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0D0D0D; }
+::-webkit-scrollbar-thumb { background: #00FF41; }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -83,15 +81,11 @@ button {
 }
 
 @keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 12px var(--green-glow), inset 0 0 8px rgba(0,255,65,0.05); }
-  50% { box-shadow: 0 0 25px var(--green-glow), inset 0 0 16px rgba(0,255,65,0.08); }
+  0%, 100% { box-shadow: 0 0 10px rgba(0,255,65,0.4), inset 0 0 8px rgba(0,255,65,0.03); }
+  50% { box-shadow: 0 0 20px rgba(0,255,65,0.6), inset 0 0 14px rgba(0,255,65,0.06); }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-  .moai-bg { background-size: 180px auto; }
 }
