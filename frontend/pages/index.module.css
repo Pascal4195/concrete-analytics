@@ -15,7 +15,7 @@
   gap: 0.6rem;
   margin-bottom: 1.25rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(0, 10, 0, 0.65);
+  background: rgba(0, 10, 0, 0.70);
   backdrop-filter: blur(8px);
   border: 1px solid var(--green);
   box-shadow: 0 0 10px var(--green-glow);
@@ -34,14 +34,18 @@
 .online { background: var(--green); box-shadow: 0 0 8px var(--green); }
 .offline { background: var(--red); box-shadow: 0 0 8px var(--red); }
 
-.statusText { color: var(--green); text-shadow: 0 0 6px var(--green-glow); }
-
-.statusTime {
-  margin-left: auto;
+.statusText {
   color: var(--green);
   text-shadow: 0 0 6px var(--green-glow);
 }
 
+.statusTime {
+  margin-left: auto;
+  color: var(--green);
+  opacity: 0.75;
+}
+
+/* ── TIME WINDOW TOGGLE ── */
 .windowRow {
   display: flex;
   align-items: center;
@@ -58,27 +62,28 @@
 }
 
 .windowBtn {
-  background: transparent;
-  border: 1px solid rgba(0, 255, 65, 0.5);
-  color: rgba(0, 255, 65, 0.7);
+  background: rgba(0, 10, 0, 0.60);
+  border: 1px solid var(--green);
+  color: var(--green);
   padding: 0.3rem 0.9rem;
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   transition: all 0.2s;
+  text-shadow: 0 0 4px var(--green-glow);
+  box-shadow: 0 0 6px var(--green-glow);
 }
 
 .windowBtn:hover {
-  border-color: var(--green);
-  color: var(--green);
-  box-shadow: 0 0 8px var(--green-glow);
+  background: rgba(0, 255, 65, 0.1);
+  box-shadow: 0 0 12px var(--green-glow);
 }
 
 .windowActive {
+  background: rgba(0, 255, 65, 0.15) !important;
   border-color: var(--green) !important;
   color: var(--green) !important;
-  box-shadow: 0 0 12px var(--green-glow);
-  background: rgba(0,255,65,0.08) !important;
-  text-shadow: 0 0 6px var(--green-glow);
+  box-shadow: 0 0 16px var(--green-glow), inset 0 0 8px rgba(0,255,65,0.1) !important;
+  text-shadow: 0 0 8px var(--green) !important;
 }
 
 .vaultInfo {
@@ -87,7 +92,7 @@
   gap: 1rem;
   margin-bottom: 1.25rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(0, 10, 0, 0.65);
+  background: rgba(0, 10, 0, 0.70);
   backdrop-filter: blur(8px);
   border-left: 2px solid var(--green);
   box-shadow: 0 0 10px var(--green-glow);
@@ -105,13 +110,14 @@
   color: var(--green);
   font-size: 0.55rem;
   word-break: break-all;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 .vaultInfoRisk {
   margin-left: auto;
   color: var(--green);
   letter-spacing: 0.1em;
+  opacity: 0.85;
 }
 
 .loading {
@@ -119,6 +125,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   color: var(--green);
+  text-shadow: 0 0 6px var(--green-glow);
   padding: 1rem;
   margin-bottom: 1rem;
 }
@@ -129,7 +136,7 @@
 }
 
 .narrative {
-  background: rgba(0, 10, 0, 0.65);
+  background: rgba(0, 10, 0, 0.70);
   backdrop-filter: blur(8px);
   border: 1px solid var(--green);
   box-shadow: 0 0 10px var(--green-glow);
@@ -153,14 +160,19 @@
   opacity: 0.85;
 }
 
+/* ── RED DISCLAIMER — always visible ── */
 .disclaimer {
-  font-size: 0.58rem;
-  color: var(--red);
+  font-size: 0.62rem;
+  color: #ff4444;
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.7);
   letter-spacing: 0.08em;
   line-height: 1.6;
-  padding: 0.75rem;
-  border-left: 2px solid var(--red);
-  background: rgba(255,50,50,0.03);
+  padding: 0.85rem 1rem;
+  border-left: 3px solid #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.5);
+  background: rgba(255, 20, 20, 0.08);
+  box-shadow: 0 0 12px rgba(255, 68, 68, 0.3);
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -177,8 +189,8 @@
   }
   .windowRow { margin-bottom: 1rem; }
   .windowBtn {
-    padding: 0.3rem 0.75rem;
-    font-size: 0.6rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.58rem;
   }
   .vaultInfo {
     flex-wrap: wrap;
@@ -205,7 +217,7 @@
   justify-content: space-between;
   padding: 1rem 1.25rem;
   border-top: 1px solid rgba(0, 255, 65, 0.4);
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.70);
   backdrop-filter: blur(8px);
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -219,11 +231,14 @@
   letter-spacing: 0.15em;
   color: var(--green);
   text-decoration: none;
-  transition: color 0.2s;
-  opacity: 0.7;
+  transition: all 0.2s;
+  opacity: 0.8;
 }
 
-.tm:hover { opacity: 1; color: var(--green); text-shadow: 0 0 8px var(--green-glow); }
+.tm:hover {
+  opacity: 1;
+  text-shadow: 0 0 8px var(--green-glow);
+}
 
 .pfp {
   border-radius: 50%;
@@ -245,7 +260,7 @@
 /* TICKER */
 .tickerWrap {
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.60);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0, 255, 65, 0.4);
   padding: 0.4rem 0;
@@ -261,10 +276,13 @@
   letter-spacing: 0.12em;
   color: var(--green);
   padding-left: 100%;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-.ticker span { color: var(--green); text-shadow: 0 0 6px var(--green-glow); }
+.ticker span {
+  color: var(--green);
+  text-shadow: 0 0 6px var(--green-glow);
+}
 
 @keyframes tickerScroll {
   0% { transform: translateX(0); }
