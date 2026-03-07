@@ -1,7 +1,4 @@
-.page {
-  min-height: 100vh;
-  background: transparent;
-}
+.page { min-height: 100vh; background: transparent; }
 
 .main {
   max-width: 1200px;
@@ -9,161 +6,116 @@
   padding: 1.5rem 1.25rem 4rem;
 }
 
-/* STATUS ROW */
 .statusRow {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 1.25rem;
-  padding: 0.5rem 0.75rem;
-  background: rgba(13, 13, 13, 0.75);
+  padding: 0.6rem 0.85rem;
+  background: rgba(13,13,13,0.75);  /* card bg — semi-transparent */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 4px solid #00FF41;
+  border: 4px solid #00FF41;        /* border — full bright */
+  box-shadow: 0 0 16px rgba(0,255,65,0.3);
   font-size: 0.6rem;
   letter-spacing: 0.15em;
-  color: #00FF41;
 }
 
 .statusDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%; flex-shrink: 0;
   animation: blink 2s infinite;
 }
-
 .online  { background: #00FF41; box-shadow: 0 0 8px #00FF41; }
 .offline { background: #FF3131; box-shadow: 0 0 8px #FF3131; }
 
+/* text — full bright */
 .statusText { color: #00FF41; font-weight: bold; }
+.statusTime { margin-left: auto; color: #00FF41; }
 
-.statusTime {
-  margin-left: auto;
-  color: rgba(0, 255, 65, 0.6);
-}
-
-/* TIME WINDOW TOGGLE */
+/* TOGGLE */
 .windowRow {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  display: flex; align-items: center;
+  gap: 0.5rem; margin-bottom: 1.25rem;
 }
-
 .windowLabel {
   font-size: 0.6rem;
-  color: #00FF41;
+  color: #00FF41;           /* full bright */
   letter-spacing: 0.15em;
   margin-right: 0.25rem;
+  text-shadow: 0 0 8px #00FF41;
 }
-
 .windowBtn {
-  background: transparent;
-  border: 2px solid #00FF41;
-  color: #00FF41;
-  padding: 0.3rem 0.9rem;
+  background: rgba(13,13,13,0.75);  /* semi-transparent bg */
+  border: 2px solid #00FF41;        /* full bright border */
+  color: #00FF41;                   /* full bright text */
+  padding: 0.35rem 0.9rem;
   font-size: 0.65rem;
   letter-spacing: 0.15em;
-  transition: all 0.15s ease;
-  opacity: 0.45;
+  transition: box-shadow 0.15s ease;
+  opacity: 0.55;
 }
-
-.windowBtn:hover {
-  opacity: 1;
-  box-shadow: 0 0 12px rgba(0,255,65,0.4);
-}
-
+.windowBtn:hover { opacity: 1; box-shadow: 0 0 14px rgba(0,255,65,0.5); }
 .windowActive {
   background: #00FF41 !important;
-  color: #000000 !important;
+  color: #000 !important;
   border-color: #00FF41 !important;
   opacity: 1 !important;
   font-weight: bold;
-  box-shadow: 0 0 16px rgba(0,255,65,0.5) !important;
+  box-shadow: 0 0 20px rgba(0,255,65,0.6) !important;
 }
 
 /* VAULT INFO */
 .vaultInfo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-  padding: 0.5rem 0.75rem;
-  background: rgba(13, 13, 13, 0.75);
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.25rem; padding: 0.6rem 0.85rem;
+  background: rgba(13,13,13,0.75);  /* semi-transparent bg */
   backdrop-filter: blur(8px);
-  border-left: 4px solid #00FF41;
+  border-left: 4px solid #00FF41;   /* full bright border */
   font-size: 0.62rem;
-  color: #00FF41;
 }
-
 .vaultInfoAsset {
-  font-family: 'Orbitron', monospace;
-  font-weight: 700;
-  color: #00FF41;
-  text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41;
+  font-family: 'Orbitron', monospace; font-weight: 700;
+  color: #00FF41; text-shadow: 0 0 10px #00FF41;  /* full bright */
 }
-
-.vaultInfoAddr {
-  color: rgba(0, 255, 65, 0.45);
-  font-size: 0.55rem;
-  word-break: break-all;
-}
-
-.vaultInfoRisk {
-  margin-left: auto;
-  color: rgba(0, 255, 65, 0.6);
-  letter-spacing: 0.1em;
-}
+.vaultInfoAddr  { color: #00FF41; font-size: 0.55rem; word-break: break-all; } /* full bright */
+.vaultInfoRisk  { margin-left: auto; color: #00FF41; letter-spacing: 0.1em; } /* full bright */
 
 .loading {
-  text-align: center;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  color: #00FF41;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  text-align: center; font-size: 0.7rem;
+  letter-spacing: 0.2em; color: #00FF41;
+  padding: 1rem; margin-bottom: 1rem;
 }
-
 .blink { display: inline-block; animation: blink 1s infinite; }
 
 /* NARRATIVE */
 .narrative {
-  background: rgba(13, 13, 13, 0.75);
+  background: rgba(13,13,13,0.75);  /* semi-transparent bg */
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 4px solid #00FF41;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
+  border: 4px solid #00FF41;        /* full bright border */
+  padding: 1.25rem; margin-bottom: 1rem;
 }
-
 .narrativeLabel {
-  font-size: 0.6rem;
-  color: rgba(0, 255, 65, 0.6);
-  letter-spacing: 0.2em;
-  margin-bottom: 0.6rem;
+  font-size: 0.6rem; color: #00FF41;  /* full bright */
+  letter-spacing: 0.2em; margin-bottom: 0.6rem;
+  text-shadow: 0 0 8px #00FF41;
 }
-
 .narrativeText {
-  font-size: 0.65rem;
-  color: rgba(0, 255, 65, 0.75);
-  line-height: 1.8;
-  letter-spacing: 0.05em;
+  font-size: 0.65rem; color: #00FF41;  /* full bright */
+  line-height: 1.8; letter-spacing: 0.05em;
 }
 
-/* RED DISCLAIMER */
+/* DISCLAIMER */
 .disclaimer {
   font-size: 0.62rem;
-  color: #FF3131;
-  text-shadow: 0 0 8px rgba(255, 49, 49, 0.6);
-  letter-spacing: 0.08em;
-  line-height: 1.7;
+  color: #FF3131;                        /* full bright red */
+  text-shadow: 0 0 8px rgba(255,49,49,0.6);
+  letter-spacing: 0.08em; line-height: 1.7;
   padding: 1rem;
-  border: 4px solid #FF3131;
-  background: rgba(13, 13, 13, 0.80);
+  border: 4px solid #FF3131;             /* full bright red border */
+  background: rgba(13,13,13,0.75);       /* semi-transparent bg */
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 0 20px rgba(255, 49, 49, 0.2);
+  box-shadow: 0 0 20px rgba(255,49,49,0.25);
   margin-top: 0.5rem;
 }
 
@@ -182,43 +134,22 @@
 
 /* FOOTER */
 .footer {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 1rem 1.25rem;
-  border-top: 2px solid rgba(0, 255, 65, 0.3);
-  background: rgba(13, 13, 13, 0.85);
+  border-top: 2px solid #00FF41;
+  background: rgba(13,13,13,0.92);
   backdrop-filter: blur(8px);
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-wrap: wrap; gap: 0.5rem;
 }
-
 .tm {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  color: rgba(0, 255, 65, 0.6);
-  text-decoration: none;
-  transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.6rem; letter-spacing: 0.15em;
+  color: #00FF41; text-decoration: none; transition: all 0.2s;
 }
-
-.tm:hover { color: #00FF41; text-shadow: 0 0 8px rgba(0,255,65,0.5); }
-
-.pfp {
-  border-radius: 50%;
-  border: 2px solid #00FF41;
-  object-fit: cover;
-}
-
-.footerRight {
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  color: rgba(0, 255, 65, 0.3);
-}
+.tm:hover { text-shadow: 0 0 8px rgba(0,255,65,0.5); }
+.pfp { border-radius: 50%; border: 2px solid #00FF41; object-fit: cover; }
+.footerRight { font-size: 0.55rem; letter-spacing: 0.12em; color: #00FF41; }
 
 @media (max-width: 768px) {
   .footer { justify-content: center; }
@@ -228,27 +159,19 @@
 /* TICKER */
 .tickerWrap {
   overflow: hidden;
-  background: rgba(13, 13, 13, 0.85);
-  border-bottom: 2px solid rgba(0, 255, 65, 0.3);
+  background: rgba(13,13,13,0.92);
+  border-bottom: 2px solid #00FF41;
   padding: 0.4rem 0;
-  position: relative;
-  z-index: 1;
+  position: relative; z-index: 1;
   white-space: nowrap;
 }
-
 .ticker {
   display: inline-block;
   animation: tickerScroll 35s linear infinite;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  color: rgba(0, 255, 65, 0.55);
-  padding-left: 100%;
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  color: #00FF41; padding-left: 100%;
 }
-
-.ticker span {
-  color: #00FF41;
-  text-shadow: 0 0 6px rgba(0,255,65,0.4);
-}
+.ticker span { color: #00FF41; text-shadow: 0 0 6px rgba(0,255,65,0.5); }
 
 @keyframes tickerScroll {
   0%   { transform: translateX(0); }
