@@ -1,27 +1,20 @@
 .wrap { margin-bottom: 2rem; }
 
 .label {
-  font-size: 0.65rem;
-  color: rgba(0, 255, 65, 0.6);
-  letter-spacing: 0.2em;
-  margin-bottom: 0.75rem;
+  font-size: 0.65rem; color: #00FF41;
+  letter-spacing: 0.2em; margin-bottom: 0.75rem;
+  text-shadow: 0 0 8px #00FF41;
 }
 
 .empty {
-  border: 4px solid rgba(0, 255, 65, 0.3);
-  padding: 2rem;
-  text-align: center;
-  font-size: 0.7rem;
-  color: rgba(0, 255, 65, 0.5);
+  border: 4px solid #00FF41;
+  padding: 2rem; text-align: center;
+  font-size: 0.7rem; color: #00FF41;
   letter-spacing: 0.1em;
-  background: rgba(13, 13, 13, 0.75);
+  background: rgba(13,13,13,0.75);
 }
 
-.blink {
-  animation: blink 1s infinite;
-  display: inline-block;
-  margin-top: 0.5rem;
-}
+.blink { animation: blink 1s infinite; display: inline-block; margin-top: 0.5rem; }
 
 .grid {
   display: grid;
@@ -30,50 +23,39 @@
 }
 
 .chartCard {
-  background: rgba(13, 13, 13, 0.75);
+  background: rgba(13,13,13,0.75);  /* semi-transparent */
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 4px solid rgba(0, 255, 65, 0.3);
+  border: 4px solid #00FF41;        /* full bright */
   padding: 1rem;
   animation: fadeIn 0.5s ease forwards;
-  transition: border-color 0.15s ease;
 }
 
-.chartCard:hover {
-  border-color: #00FF41;
-}
-
+/* all text full bright */
 .chartTitle {
   font-family: 'Orbitron', monospace;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.2rem;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.1em; margin-bottom: 0.2rem;
   color: #00FF41;
-  text-shadow: 0 0 8px rgba(0,255,65,0.5);
+  text-shadow: 0 0 8px #00FF41;
 }
 
 .chartDesc {
-  font-size: 0.58rem;
-  color: rgba(0, 255, 65, 0.45);
-  letter-spacing: 0.08em;
-  margin-bottom: 0.75rem;
+  font-size: 0.58rem; color: #00FF41;
+  letter-spacing: 0.08em; margin-bottom: 0.75rem;
 }
 
 .tooltip {
-  background: rgba(13, 13, 13, 0.95);
+  background: rgba(13,13,13,0.95);
   border: 2px solid #00FF41;
   padding: 0.5rem 0.75rem;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
-  color: #00FF41;
+  font-size: 0.65rem; color: #00FF41;
 }
 
 .tooltipTime {
-  color: rgba(0, 255, 65, 0.5);
-  font-size: 0.58rem;
-  margin-bottom: 0.25rem;
-  letter-spacing: 0.1em;
+  color: #00FF41; font-size: 0.58rem;
+  margin-bottom: 0.25rem; letter-spacing: 0.1em;
 }
 
 @media (max-width: 768px) {
