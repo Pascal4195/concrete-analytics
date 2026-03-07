@@ -15,27 +15,29 @@
 }
 
 .card {
-  background: rgba(0, 10, 0, 0.65);
+  background: rgba(0, 10, 0, 0.70);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 255, 65, 0.5);
+  border: 1px solid var(--green);
   padding: 0.85rem 1rem;
   text-align: left;
-  color: rgba(0, 255, 65, 0.75);
+  color: var(--green);
   transition: all 0.2s;
   cursor: pointer;
+  opacity: 0.8;
+  box-shadow: 0 0 6px var(--green-glow);
 }
 
 .card:hover {
-  border-color: var(--green);
-  color: var(--green);
-  box-shadow: 0 0 12px var(--green-glow);
+  opacity: 1;
+  box-shadow: 0 0 14px var(--green-glow);
   text-shadow: 0 0 6px var(--green-glow);
 }
 
 .active {
+  opacity: 1 !important;
   border-color: var(--green) !important;
   color: var(--green) !important;
-  box-shadow: 0 0 15px var(--green-glow), inset 0 0 10px rgba(0,255,65,0.05) !important;
+  box-shadow: 0 0 18px var(--green-glow), inset 0 0 10px rgba(0,255,65,0.07) !important;
   text-shadow: 0 0 6px var(--green-glow) !important;
 }
 
@@ -59,10 +61,7 @@
 }
 
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-  }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
   .card { padding: 0.7rem 0.75rem; }
   .asset { font-size: 0.85rem; }
 }
