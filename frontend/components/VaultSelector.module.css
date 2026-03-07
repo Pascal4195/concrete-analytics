@@ -2,7 +2,7 @@
 
 .label {
   font-size: 0.65rem;
-  color: #00FF41;              /* full bright */
+  color: #00FF41;
   letter-spacing: 0.2em;
   margin-bottom: 0.75rem;
   text-shadow: 0 0 8px #00FF41;
@@ -15,24 +15,29 @@
 }
 
 .card {
-  background: rgba(13,13,13,0.75);  /* semi-transparent — moai shows through */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 4px solid #00FF41;        /* full bright border */
+  background: rgba(13,13,13,0.75);
+  border: 4px solid #00FF41;
   padding: 0.85rem 1rem;
   text-align: left;
-  transition: box-shadow 0.15s ease;
   cursor: pointer;
-}
-.card:hover {
-  box-shadow: 0 0 20px rgba(0,255,65,0.3);
-}
-.active {
-  background: rgba(0,255,65,0.08) !important;
-  box-shadow: 0 0 30px rgba(0,255,65,0.4), inset 0 0 20px rgba(0,255,65,0.05) !important;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  transform-origin: center;
 }
 
-/* ALL text full bright */
+.card:active {
+  animation: vaultSelect 0.4s ease forwards;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px rgba(0,255,65,0.35);
+}
+
+.active {
+  background: rgba(0,255,65,0.08) !important;
+  box-shadow: 0 0 30px rgba(0,255,65,0.5), inset 0 0 20px rgba(0,255,65,0.08) !important;
+}
+
+/* all text full bright */
 .asset {
   font-family: 'Orbitron', monospace;
   font-size: 1rem; font-weight: 700;
@@ -67,7 +72,7 @@
   margin-bottom: 0.4rem;
 }
 
-/* vault notes — full bright text */
+/* vault notes */
 .vaultNote {
   font-size: 0.52rem; line-height: 1.5;
   letter-spacing: 0.03em;
