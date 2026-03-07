@@ -12,7 +12,10 @@
   gap: 0.75rem;
 }
 
+/* ── BASE CARD ── */
 .card {
+  position: relative;
+  overflow: hidden;
   background: rgba(0, 8, 0, 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -20,14 +23,81 @@
   padding: 0.85rem 1rem;
   text-align: left;
   cursor: pointer;
-  transition: box-shadow 0.15s ease;
-}
-.card:hover { box-shadow: 0 0 20px rgba(0,255,65,0.35); }
-.active {
-  background: rgba(0,255,65,0.08) !important;
-  box-shadow: 0 0 30px rgba(0,255,65,0.5), inset 0 0 20px rgba(0,255,65,0.08) !important;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
+.card:hover {
+  box-shadow: 0 0 20px rgba(0,255,65,0.35);
+}
+
+/* ── ACTIVE: breathing pulse glow ── */
+.active {
+  background: rgba(0, 255, 65, 0.06) !important;
+  border-color: #00FF41 !important;
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 10px rgba(0,255,65,0.5),
+      0 0 25px rgba(0,255,65,0.2),
+      inset 0 0 15px rgba(0,255,65,0.04);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(0,255,65,0.9),
+      0 0 50px rgba(0,255,65,0.45),
+      inset 0 0 30px rgba(0,255,65,0.1);
+  }
+}
+
+/* ── GLITCH FLICKER on click ── */
+.glitching {
+  animation: glitch 0.15s steps(2) forwards !important;
+}
+
+@keyframes glitch {
+  0%   { transform: translate(0, 0);      opacity: 1;   filter: none; }
+  20%  { transform: translate(-3px, 1px); opacity: 0.6; filter: hue-rotate(90deg) brightness(2); }
+  40%  { transform: translate(3px, -1px); opacity: 1;   filter: none; }
+  60%  { transform: translate(-2px, 0px); opacity: 0.5; filter: brightness(3); }
+  80%  { transform: translate(2px, 1px);  opacity: 1;   filter: none; }
+  100% { transform: translate(0, 0);      opacity: 1;   filter: none; }
+}
+
+/* ── SCAN LINE SWEEP ── */
+.scanning {
+  border-color: #00FF41 !important;
+}
+
+.scanLine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0,255,65,0.4) 20%,
+    #00FF41 50%,
+    rgba(0,255,65,0.4) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px #00FF41, 0 0 25px rgba(0,255,65,0.6);
+  animation: scanSweep 0.5s ease-in forwards;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes scanSweep {
+  0%   { top: 0%;   opacity: 1; }
+  85%  { top: 95%;  opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ── CONTENT ── */
 .asset {
   font-family: 'Orbitron', monospace;
   font-size: 1rem; font-weight: 700;
