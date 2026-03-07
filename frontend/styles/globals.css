@@ -5,7 +5,7 @@
   --green-dim: #00cc33;
   --green-glow: rgba(0, 255, 65, 0.4);
   --bg: #0D0D0D;
-  --card-bg: rgba(13, 13, 13, 0.75);
+  --card-bg: rgba(0, 8, 0, 0.45);
   --border: #00FF41;
   --text-dim: #00cc33;
   --red: #FF3131;
@@ -13,9 +13,6 @@
 
 * {
   margin: 0; padding: 0; box-sizing: border-box;
-  /* kill backdrop-filter globally — it darkens cards on Android */
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 html, body { height: 100%; }
@@ -45,7 +42,7 @@ body {
 .moai-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(13, 13, 13, 0.60);
+  background: rgba(13, 13, 13, 0.35);
   pointer-events: none;
   z-index: 1;
 }
