@@ -2,13 +2,13 @@
 
 :root {
   --green: #00ff41;
-  --green-dim: #00ff41;
-  --green-glow: rgba(0, 255, 65, 0.6);
+  --green-dim: #00dd33;
+  --green-glow: rgba(0, 255, 65, 0.55);
   --bg: #040d04;
   --card-bg: rgba(0, 10, 0, 0.65);
   --border: #00ff41;
-  --text-dim: #00ff41;
-  --red: #ff3333;
+  --text-dim: #00cc33;
+  --red: #ff4444;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -62,7 +62,6 @@ body {
   z-index: 2;
 }
 
-/* All page content above layers */
 #__next {
   position: relative;
   z-index: 3;
@@ -94,7 +93,5 @@ button {
 }
 
 @media (max-width: 768px) {
-  .moai-bg {
-    background-size: 180px auto;
-  }
+  .moai-bg { background-size: 180px auto; }
 }
