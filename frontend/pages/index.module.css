@@ -9,43 +9,41 @@
   padding: 1.5rem 1.25rem 4rem;
 }
 
+/* STATUS ROW */
 .statusRow {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 1.25rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(0, 10, 0, 0.70);
+  background: rgba(13, 13, 13, 0.75);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--green);
-  box-shadow: 0 0 10px var(--green-glow);
+  -webkit-backdrop-filter: blur(8px);
+  border: 4px solid #00FF41;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
+  color: #00FF41;
 }
 
 .statusDot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
   animation: blink 2s infinite;
 }
 
-.online { background: var(--green); box-shadow: 0 0 8px var(--green); }
-.offline { background: var(--red); box-shadow: 0 0 8px var(--red); }
+.online  { background: #00FF41; box-shadow: 0 0 8px #00FF41; }
+.offline { background: #FF3131; box-shadow: 0 0 8px #FF3131; }
 
-.statusText {
-  color: var(--green);
-  text-shadow: 0 0 6px var(--green-glow);
-}
+.statusText { color: #00FF41; font-weight: bold; }
 
 .statusTime {
   margin-left: auto;
-  color: var(--green);
-  opacity: 0.75;
+  color: rgba(0, 255, 65, 0.6);
 }
 
-/* ── TIME WINDOW TOGGLE ── */
+/* TIME WINDOW TOGGLE */
 .windowRow {
   display: flex;
   align-items: center;
@@ -55,156 +53,130 @@
 
 .windowLabel {
   font-size: 0.6rem;
-  color: var(--green);
+  color: #00FF41;
   letter-spacing: 0.15em;
   margin-right: 0.25rem;
-  text-shadow: 0 0 6px var(--green-glow);
 }
 
 .windowBtn {
-  background: rgba(0, 10, 0, 0.60);
-  border: 1px solid var(--green);
-  color: var(--green);
+  background: transparent;
+  border: 2px solid #00FF41;
+  color: #00FF41;
   padding: 0.3rem 0.9rem;
   font-size: 0.65rem;
   letter-spacing: 0.15em;
-  transition: all 0.2s;
-  text-shadow: 0 0 4px var(--green-glow);
-  box-shadow: 0 0 6px var(--green-glow);
+  transition: all 0.15s ease;
+  opacity: 0.45;
 }
 
 .windowBtn:hover {
-  background: rgba(0, 255, 65, 0.1);
-  box-shadow: 0 0 12px var(--green-glow);
+  opacity: 1;
+  box-shadow: 0 0 12px rgba(0,255,65,0.4);
 }
 
 .windowActive {
-  background: rgba(0, 255, 65, 0.15) !important;
-  border-color: var(--green) !important;
-  color: var(--green) !important;
-  box-shadow: 0 0 16px var(--green-glow), inset 0 0 8px rgba(0,255,65,0.1) !important;
-  text-shadow: 0 0 8px var(--green) !important;
+  background: #00FF41 !important;
+  color: #000000 !important;
+  border-color: #00FF41 !important;
+  opacity: 1 !important;
+  font-weight: bold;
+  box-shadow: 0 0 16px rgba(0,255,65,0.5) !important;
 }
 
+/* VAULT INFO */
 .vaultInfo {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.25rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(0, 10, 0, 0.70);
+  background: rgba(13, 13, 13, 0.75);
   backdrop-filter: blur(8px);
-  border-left: 2px solid var(--green);
-  box-shadow: 0 0 10px var(--green-glow);
+  border-left: 4px solid #00FF41;
   font-size: 0.62rem;
+  color: #00FF41;
 }
 
 .vaultInfoAsset {
   font-family: 'Orbitron', monospace;
   font-weight: 700;
-  color: var(--green);
-  text-shadow: 0 0 8px var(--green-glow);
+  color: #00FF41;
+  text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41;
 }
 
 .vaultInfoAddr {
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.45);
   font-size: 0.55rem;
   word-break: break-all;
-  opacity: 0.65;
 }
 
 .vaultInfoRisk {
   margin-left: auto;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.6);
   letter-spacing: 0.1em;
-  opacity: 0.85;
 }
 
 .loading {
   text-align: center;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
-  color: var(--green);
-  text-shadow: 0 0 6px var(--green-glow);
+  color: #00FF41;
   padding: 1rem;
   margin-bottom: 1rem;
 }
 
-.blink {
-  display: inline-block;
-  animation: blink 1s infinite;
-}
+.blink { display: inline-block; animation: blink 1s infinite; }
 
+/* NARRATIVE */
 .narrative {
-  background: rgba(0, 10, 0, 0.70);
+  background: rgba(13, 13, 13, 0.75);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--green);
-  box-shadow: 0 0 10px var(--green-glow);
+  -webkit-backdrop-filter: blur(8px);
+  border: 4px solid #00FF41;
   padding: 1.25rem;
   margin-bottom: 1rem;
 }
 
 .narrativeLabel {
   font-size: 0.6rem;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.6);
   letter-spacing: 0.2em;
   margin-bottom: 0.6rem;
-  text-shadow: 0 0 6px var(--green-glow);
 }
 
 .narrativeText {
   font-size: 0.65rem;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.75);
   line-height: 1.8;
   letter-spacing: 0.05em;
-  opacity: 0.85;
 }
 
-/* ── RED DISCLAIMER — always visible ── */
+/* RED DISCLAIMER */
 .disclaimer {
   font-size: 0.62rem;
-  color: #ff4444;
-  text-shadow: 0 0 8px rgba(255, 68, 68, 0.7);
+  color: #FF3131;
+  text-shadow: 0 0 8px rgba(255, 49, 49, 0.6);
   letter-spacing: 0.08em;
-  line-height: 1.6;
-  padding: 0.85rem 1rem;
-  border-left: 3px solid #ff4444;
-  border: 1px solid rgba(255, 68, 68, 0.5);
-  background: rgba(255, 20, 20, 0.08);
-  box-shadow: 0 0 12px rgba(255, 68, 68, 0.3);
+  line-height: 1.7;
+  padding: 1rem;
+  border: 4px solid #FF3131;
+  background: rgba(13, 13, 13, 0.80);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(255, 49, 49, 0.2);
   margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {
   .main { padding: 1rem 0.85rem 3rem; }
-  .statusRow {
-    font-size: 0.52rem;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .statusTime {
-    width: 100%;
-    margin-left: 0;
-    margin-top: 0.2rem;
-  }
-  .windowRow { margin-bottom: 1rem; }
-  .windowBtn {
-    padding: 0.3rem 0.65rem;
-    font-size: 0.58rem;
-  }
-  .vaultInfo {
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .vaultInfoAddr {
-    width: 100%;
-    font-size: 0.48rem;
-  }
+  .statusRow { font-size: 0.52rem; flex-wrap: wrap; gap: 0.4rem; }
+  .statusTime { width: 100%; margin-left: 0; margin-top: 0.2rem; }
+  .windowRow { margin-bottom: 1rem; flex-wrap: wrap; }
+  .windowBtn { padding: 0.3rem 0.65rem; font-size: 0.58rem; }
+  .vaultInfo { flex-wrap: wrap; gap: 0.4rem; }
+  .vaultInfoAddr { width: 100%; font-size: 0.48rem; }
   .vaultInfoRisk { margin-left: 0; }
-  .narrativeText {
-    font-size: 0.6rem;
-    line-height: 1.7;
-  }
+  .narrativeText { font-size: 0.6rem; }
   .disclaimer { font-size: 0.55rem; }
 }
 
@@ -216,8 +188,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.25rem;
-  border-top: 1px solid rgba(0, 255, 65, 0.4);
-  background: rgba(0, 0, 0, 0.70);
+  border-top: 2px solid rgba(0, 255, 65, 0.3);
+  background: rgba(13, 13, 13, 0.85);
   backdrop-filter: blur(8px);
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -229,27 +201,23 @@
   gap: 0.5rem;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.6);
   text-decoration: none;
   transition: all 0.2s;
-  opacity: 0.8;
 }
 
-.tm:hover {
-  opacity: 1;
-  text-shadow: 0 0 8px var(--green-glow);
-}
+.tm:hover { color: #00FF41; text-shadow: 0 0 8px rgba(0,255,65,0.5); }
 
 .pfp {
   border-radius: 50%;
-  border: 1px solid var(--green);
+  border: 2px solid #00FF41;
   object-fit: cover;
 }
 
 .footerRight {
   font-size: 0.55rem;
   letter-spacing: 0.12em;
-  color: rgba(0, 255, 65, 0.5);
+  color: rgba(0, 255, 65, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -260,9 +228,8 @@
 /* TICKER */
 .tickerWrap {
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.60);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(0, 255, 65, 0.4);
+  background: rgba(13, 13, 13, 0.85);
+  border-bottom: 2px solid rgba(0, 255, 65, 0.3);
   padding: 0.4rem 0;
   position: relative;
   z-index: 1;
@@ -274,17 +241,16 @@
   animation: tickerScroll 35s linear infinite;
   font-size: 0.6rem;
   letter-spacing: 0.12em;
-  color: var(--green);
+  color: rgba(0, 255, 65, 0.55);
   padding-left: 100%;
-  opacity: 0.9;
 }
 
 .ticker span {
-  color: var(--green);
-  text-shadow: 0 0 6px var(--green-glow);
+  color: #00FF41;
+  text-shadow: 0 0 6px rgba(0,255,65,0.4);
 }
 
 @keyframes tickerScroll {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
