@@ -2,17 +2,18 @@
 
 .label {
   font-size: 0.65rem;
-  color: var(--text-dim);
+  color: var(--green);
   letter-spacing: 0.2em;
   margin-bottom: 0.75rem;
+  text-shadow: 0 0 6px var(--green-glow);
 }
 
 .empty {
-  border: 1px solid var(--text-dim);
+  border: 1px solid var(--green);
   padding: 1.5rem;
   text-align: center;
   font-size: 0.7rem;
-  color: var(--text-dim);
+  color: var(--green);
   letter-spacing: 0.1em;
   animation: blink 2s infinite;
 }
@@ -24,10 +25,10 @@
 }
 
 .card {
-  background: rgba(0, 18, 0, 0.75);
-  backdrop-filter: blur(2px);
-  border: 1px solid var(--border);
-  box-shadow: 0 0 8px var(--green-glow);
+  background: rgba(0, 10, 0, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--green);
+  box-shadow: 0 0 10px var(--green-glow);
   padding: 1rem;
   animation: fadeIn 0.4s ease forwards;
 }
@@ -40,9 +41,10 @@
 
 .cardLabel {
   font-size: 0.6rem;
-  color: var(--text-dim);
+  color: var(--green);
   letter-spacing: 0.15em;
   margin-bottom: 0.4rem;
+  opacity: 0.8;
 }
 
 .cardValue {
@@ -50,34 +52,37 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--green);
-  text-shadow: 0 0 8px var(--green-glow);
+  text-shadow: 0 0 10px var(--green-glow), 0 0 20px var(--green-glow);
   margin-bottom: 0.6rem;
 }
 
 .unit {
   font-size: 0.7rem;
   font-weight: 400;
-  color: var(--text-dim);
+  color: var(--green);
+  opacity: 0.7;
 }
 
 .divider {
   height: 1px;
-  background: rgba(0, 255, 65, 0.15);
+  background: rgba(0, 255, 65, 0.3);
   margin-bottom: 0.6rem;
 }
 
 .explain {
   font-size: 0.6rem;
-  color: var(--text-dim);
+  color: var(--green);
   line-height: 1.5;
   margin-bottom: 0.35rem;
+  opacity: 0.75;
 }
 
 .why {
   font-size: 0.58rem;
-  color: rgba(0, 255, 65, 0.5);
+  color: var(--green);
   line-height: 1.5;
   font-style: italic;
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {
@@ -85,19 +90,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.6rem;
   }
-  .cardValue {
-    font-size: 1.1rem;
-  }
-  .explain {
-    font-size: 0.55rem;
-  }
-  .why {
-    font-size: 0.52rem;
-  }
+  .cardValue { font-size: 1.1rem; }
+  .explain { font-size: 0.55rem; }
+  .why { font-size: 0.52rem; }
 }
 
 @media (max-width: 420px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+  .grid { grid-template-columns: 1fr; }
 }
