@@ -2,8 +2,14 @@
 
 .label {
   font-size: 0.65rem; color: #00FF41;
-  letter-spacing: 0.2em; margin-bottom: 0.75rem;
+  letter-spacing: 0.2em; margin-bottom: 0.4rem;
   text-shadow: 0 0 8px #00FF41;
+}
+
+.chartHint {
+  font-size: 0.52rem; color: #009922;
+  letter-spacing: 0.15em; margin-bottom: 0.75rem;
+  opacity: 0.7;
 }
 
 .empty {
@@ -30,6 +36,7 @@
   border: 4px solid #00FF41;
   padding: 1rem;
   animation: fadeIn 0.5s ease forwards;
+  touch-action: none; /* needed for custom touch handling */
 }
 
 .chartTitle {
@@ -38,8 +45,50 @@
   letter-spacing: 0.1em; margin-bottom: 0.2rem;
   color: #00FF41; text-shadow: 0 0 8px #00FF41;
 }
-.chartDesc { font-size: 0.58rem; color: #00FF41; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.chartDesc {
+  font-size: 0.58rem; color: #00FF41;
+  letter-spacing: 0.08em; margin-bottom: 0.75rem;
+}
 
+/* ── PAN / ZOOM CONTROLS ── */
+.chartControls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0,255,65,0.15);
+}
+
+.chartBtn {
+  background: rgba(0, 8, 0, 0.6);
+  border: 1px solid #00FF41;
+  color: #00FF41;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: box-shadow 0.1s ease, background 0.1s ease;
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1;
+}
+.chartBtn:hover:not(:disabled) {
+  background: rgba(0,255,65,0.1);
+  box-shadow: 0 0 8px rgba(0,255,65,0.4);
+}
+.chartBtn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.chartRange {
+  margin-left: auto;
+  font-size: 0.52rem;
+  color: #009922;
+  letter-spacing: 0.1em;
+}
+
+/* ── TOOLTIP ── */
 .tooltip {
   background: rgba(0, 8, 0, 0.92);
   backdrop-filter: blur(4px);
@@ -49,10 +98,14 @@
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.65rem; color: #00FF41;
 }
-.tooltipTime { color: #00FF41; font-size: 0.58rem; margin-bottom: 0.25rem; letter-spacing: 0.1em; }
+.tooltipTime {
+  color: #00FF41; font-size: 0.58rem;
+  margin-bottom: 0.25rem; letter-spacing: 0.1em;
+}
 
 @media (max-width: 768px) {
   .grid { grid-template-columns: 1fr; gap: 0.6rem; }
   .chartCard { padding: 0.85rem; }
   .chartTitle { font-size: 0.62rem; }
+  .chartBtn { padding: 0.25rem 0.6rem; font-size: 0.6rem; }
 }
