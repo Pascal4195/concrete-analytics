@@ -12,19 +12,33 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Health check + snapshot trigger
-// UptimeRobot pings this once per hour to wake the backend
-// On every wake-up, a snapshot runs immediately then Render goes back to sleep
-app.get('/health', async (req, res) => {
+// ── Snapshot lock — prevents two jobs running at the same time ──
+let snapshotRunning = false;
+
+function safeSnapshot() {
+  if (snapshotRunning) {
+    console.log('[snapshot] Already running — skipping this trigger.');
+    return;
+  }
+  snapshotRunning = true;
+  runSnapshot()
+    .catch(err => console.error('[snapshot] Unhandled error:', err.message))
+    .finally(() => { snapshotRunning = false; });
+}
+
+// ── Health check ──
+// UptimeRobot pings this once per hour to wake the backend.
+// Respond immediately so the ping never times out,
+// then fire the snapshot in the background.
+app.get('/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
-  // Run snapshot after responding so the ping doesn't time out
-  await runSnapshot();
+  safeSnapshot(); // fire-and-forget, no await
 });
 
 app.use('/api', apiRoutes);
 
 app.listen(PORT, () => {
   console.log(`Concrete Analytics Backend running on port ${PORT}`);
-  // Run once immediately on first startup
-  runSnapshot();
+  // Delay first snapshot by 5s to let the server fully boot before hitting RPC
+  setTimeout(safeSnapshot, 5000);
 });
