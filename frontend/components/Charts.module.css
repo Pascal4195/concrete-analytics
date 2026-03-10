@@ -36,7 +36,7 @@
   border: 4px solid #00FF41;
   padding: 1rem;
   animation: fadeIn 0.5s ease forwards;
-  touch-action: none; /* needed for custom touch handling */
+  touch-action: pan-y; /* allows vertical page scroll, JS handles horizontal pan */
 }
 
 .chartTitle {
