@@ -29,7 +29,6 @@ function formatTime(ts) {
   return `${d.getMonth() + 1}/${d.getDate()} ${d.getHours()}:00`;
 }
 
-// How many data points visible at once by default
 const DEFAULT_VISIBLE = 24;
 const MIN_VISIBLE = 6;
 
@@ -58,21 +57,26 @@ function usePanZoom(totalLength) {
       const next = direction === 'in'
         ? Math.max(MIN_VISIBLE, Math.floor(prev * 0.7))
         : Math.min(totalLength, Math.ceil(prev * 1.4));
-      // re-anchor to keep right edge fixed
       setStartIndex(si => Math.max(0, Math.min(si, totalLength - next)));
       return next;
     });
   }, [totalLength]);
 
-  // Touch pan
   const onTouchStart = useCallback((e) => {
-    dragRef.current = { x: e.touches[0].clientX, dist: null };
+    dragRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+      dist: null,
+      direction: null, // 'horizontal' | 'vertical' | null
+    };
   }, []);
 
   const onTouchMove = useCallback((e) => {
     if (!dragRef.current) return;
+
+    // Pinch zoom — always handle
     if (e.touches.length === 2) {
-      // pinch zoom
+      e.preventDefault();
       const dist = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
         e.touches[0].clientY - e.touches[1].clientY
@@ -88,8 +92,28 @@ function usePanZoom(totalLength) {
       }
       return;
     }
+
     const dx = e.touches[0].clientX - dragRef.current.x;
-    if (Math.abs(dx) > 20) {
+    const dy = e.touches[0].clientY - dragRef.current.y;
+
+    // Determine swipe direction on first meaningful movement
+    if (!dragRef.current.direction) {
+      if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+        dragRef.current.direction = Math.abs(dx) > Math.abs(dy)
+          ? 'horizontal'
+          : 'vertical';
+      }
+      return; // wait until direction is known
+    }
+
+    if (dragRef.current.direction === 'vertical') {
+      // Let the page scroll — do nothing
+      return;
+    }
+
+    // Horizontal — pan the chart
+    e.preventDefault();
+    if (Math.abs(dx) > 15) {
       pan(dx < 0 ? 2 : -2);
       dragRef.current.x = e.touches[0].clientX;
     }
@@ -207,7 +231,6 @@ export default function Charts({ snapshots }) {
 
   const total = allData.length;
 
-  // Each chart gets its own independent pan/zoom state
   const apy  = usePanZoom(total);
   const tvl  = usePanZoom(total);
   const util = usePanZoom(total);
@@ -219,7 +242,7 @@ export default function Charts({ snapshots }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.label}>// CHART LAYER</div>
-      <div className={styles.chartHint}>← DRAG TO PAN · PINCH OR SCROLL TO ZOOM →</div>
+      <div className={styles.chartHint}>← DRAG HORIZONTALLY TO PAN · PINCH TO ZOOM →</div>
 
       <div className={styles.grid}>
 
