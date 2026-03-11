@@ -7,6 +7,7 @@ import VaultSelector from '../components/VaultSelector';
 import MetricsPanel from '../components/MetricsPanel';
 import Charts from '../components/Charts';
 import VaultComparison from '../components/VaultComparison';
+import FAQ from '../components/FAQ';
 import styles from './index.module.css';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
@@ -66,7 +67,6 @@ export default function Home() {
 
   const selectedVault = vaults.find(v => v.address === selected);
 
-  // Build ticker text from latest snapshots
   const tickerText = latestSnapshots.length > 0
     ? latestSnapshots.map(s => `${s.name.replace('Concrete ', '').replace(' Vault', '')} · APY ${parseFloat(s.latest?.apy || 0).toFixed(2)}% · TVL $${(parseFloat(s.latest?.tvl || 0) / 1000000).toFixed(2)}M`).join('   ·   ')
     : 'USDT VAULT · WeETH VAULT · WBTC VAULT · frxUSD+ VAULT · FETCHING LIVE DATA...';
@@ -139,6 +139,9 @@ export default function Home() {
               the APY?" but "is this vault reliably delivering intelligent capital allocation?"
             </div>
           </div>
+
+          {/* FAQ — sits between Analytical Intent and the disclaimer */}
+          <FAQ />
 
           <div className={styles.disclaimer}>
             ⚠ NOT FINANCIAL ADVICE. DEFI CARRIES RISK OF TOTAL LOSS. DYOR. THIS IS A COMMUNITY ANALYTICS
