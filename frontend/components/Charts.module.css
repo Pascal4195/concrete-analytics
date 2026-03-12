@@ -1,21 +1,23 @@
 .wrap { margin-bottom: 2rem; }
 
 .label {
-  font-size: var(--fs-xs); color: var(--yellow);
+  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  color: #EDD97A;
   letter-spacing: 0.2em; margin-bottom: 0.4rem;
-  text-shadow: 0 0 8px var(--yellow-glow);
+  text-shadow: 0 0 8px rgba(237,217,122,0.4);
 }
 
 .chartHint {
-  font-size: var(--fs-xs); color: var(--yellow-dim);
+  font-size: clamp(0.55rem, 1.2vw, 0.72rem);
+  color: #C9B55A;
   letter-spacing: 0.15em; margin-bottom: 0.75rem;
   opacity: 0.7;
 }
 
 .empty {
-  border: 4px solid var(--yellow); padding: 2rem;
-  text-align: center; font-size: var(--fs-sm);
-  color: var(--yellow); letter-spacing: 0.1em;
+  border: 4px solid #EDD97A; padding: 2rem;
+  text-align: center; font-size: clamp(0.65rem, 1.6vw, 0.90rem);
+  color: #EDD97A; letter-spacing: 0.1em;
   background: rgba(0, 8, 0, 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -33,7 +35,7 @@
   background: rgba(0, 8, 0, 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 4px solid var(--yellow);
+  border: 4px solid #EDD97A;
   padding: 1rem;
   animation: fadeIn 0.5s ease forwards;
   touch-action: pan-y;
@@ -41,16 +43,18 @@
 
 .chartTitle {
   font-family: 'Orbitron', monospace;
-  font-size: var(--fs-sm); font-weight: 700;
+  font-size: clamp(0.65rem, 1.6vw, 0.90rem);
+  font-weight: 700;
   letter-spacing: 0.1em; margin-bottom: 0.2rem;
-  color: var(--yellow); text-shadow: 0 0 8px var(--yellow-glow);
+  color: #EDD97A;
+  text-shadow: 0 0 8px rgba(237,217,122,0.4);
 }
 .chartDesc {
-  font-size: var(--fs-xs); color: var(--yellow-dim);
+  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  color: #C9B55A;
   letter-spacing: 0.08em; margin-bottom: 0.75rem;
 }
 
-/* ── PAN / ZOOM CONTROLS ── */
 .chartControls {
   display: flex;
   align-items: center;
@@ -62,9 +66,9 @@
 
 .chartBtn {
   background: rgba(0, 8, 0, 0.6);
-  border: 1px solid var(--yellow);
-  color: var(--yellow);
-  font-size: var(--fs-xs);
+  border: 1px solid #EDD97A;
+  color: #EDD97A;
+  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
   padding: 0.2rem 0.5rem;
   cursor: pointer;
   letter-spacing: 0.05em;
@@ -74,32 +78,30 @@
 }
 .chartBtn:hover:not(:disabled) {
   background: rgba(237,217,122,0.1);
-  box-shadow: 0 0 8px var(--yellow-glow);
+  box-shadow: 0 0 8px rgba(237,217,122,0.4);
 }
-.chartBtn:disabled {
-  opacity: 0.25;
-  cursor: default;
-}
+.chartBtn:disabled { opacity: 0.25; cursor: default; }
 
 .chartRange {
   margin-left: auto;
-  font-size: var(--fs-xs);
-  color: var(--yellow-dim);
+  font-size: clamp(0.55rem, 1.2vw, 0.72rem);
+  color: #C9B55A;
   letter-spacing: 0.1em;
 }
 
-/* ── TOOLTIP ── */
 .tooltip {
   background: rgba(0, 8, 0, 0.92);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border: 2px solid var(--yellow);
+  border: 2px solid #EDD97A;
   padding: 0.5rem 0.75rem;
   font-family: 'Share Tech Mono', monospace;
-  font-size: var(--fs-xs); color: var(--yellow);
+  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  color: #EDD97A;
 }
 .tooltipTime {
-  color: var(--yellow); font-size: var(--fs-xs);
+  color: #EDD97A;
+  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
   margin-bottom: 0.25rem; letter-spacing: 0.1em;
 }
 
