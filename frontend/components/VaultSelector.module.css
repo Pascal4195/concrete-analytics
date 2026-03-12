@@ -1,9 +1,9 @@
 .wrap { margin-bottom: 1.5rem; }
 
 .label {
-  font-size: 0.65rem; color: #00FF41;
+  font-size: var(--fs-xs); color: var(--yellow);
   letter-spacing: 0.2em; margin-bottom: 0.75rem;
-  text-shadow: 0 0 8px #00FF41;
+  text-shadow: 0 0 8px var(--yellow-glow);
 }
 
 .grid {
@@ -12,14 +12,13 @@
   gap: 0.75rem;
 }
 
-/* ── BASE CARD ── */
 .card {
   position: relative;
   overflow: hidden;
   background: rgba(0, 8, 0, 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 4px solid #00FF41;
+  border: 4px solid var(--yellow);
   padding: 0.85rem 1rem;
   text-align: left;
   cursor: pointer;
@@ -27,10 +26,10 @@
 }
 
 .card:hover {
-  box-shadow: 0 0 20px rgba(0,255,65,0.35);
+  box-shadow: 0 0 20px var(--yellow-glow);
 }
 
-/* ── ACTIVE: breathing pulse glow ── */
+/* Active card switches to green glow — live/selected state */
 .active {
   background: rgba(0, 255, 65, 0.06) !important;
   border-color: #00FF41 !important;
@@ -52,7 +51,7 @@
   }
 }
 
-/* ── GLITCH FLICKER on click ── */
+/* Glitch on click */
 .glitching {
   animation: glitch 0.15s steps(2) forwards !important;
 }
@@ -66,17 +65,13 @@
   100% { transform: translate(0, 0);      opacity: 1;   filter: none; }
 }
 
-/* ── SCAN LINE SWEEP ── */
-.scanning {
-  border-color: #00FF41 !important;
-}
+/* Scan line sweep */
+.scanning { border-color: #00FF41 !important; }
 
 .scanLine {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 3px;
+  left: 0; top: 0;
+  width: 100%; height: 3px;
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -97,18 +92,17 @@
   100% { top: 100%; opacity: 0; }
 }
 
-/* ── CONTENT ── */
 .asset {
   font-family: 'Orbitron', monospace;
-  font-size: 1rem; font-weight: 700;
-  color: #00FF41; margin-bottom: 0.2rem;
+  font-size: var(--fs-lg); font-weight: 700;
+  color: var(--yellow); margin-bottom: 0.2rem;
 }
-.name { font-size: 0.6rem; letter-spacing: 0.1em; margin-bottom: 0.4rem; color: #00FF41; }
-.risk { font-size: 0.55rem; letter-spacing: 0.15em; }
+.name { font-size: var(--fs-xs); letter-spacing: 0.1em; margin-bottom: 0.4rem; color: var(--yellow-dim); }
+.risk { font-size: var(--fs-xs); letter-spacing: 0.15em; }
 
 .institutionalBadge {
   display: inline-block;
-  font-size: 0.5rem; font-weight: bold;
+  font-size: var(--fs-xs); font-weight: bold;
   letter-spacing: 0.15em; padding: 0.15rem 0.4rem;
   border: 2px solid #A855F7; color: #A855F7;
   background: rgba(168,85,247,0.08);
@@ -118,24 +112,23 @@
 
 .pendingBadge {
   display: inline-block;
-  font-size: 0.5rem; font-weight: bold;
+  font-size: var(--fs-xs); font-weight: bold;
   letter-spacing: 0.15em; padding: 0.15rem 0.4rem;
-  border: 2px solid #00FF41; color: #00FF41;
-  background: rgba(0,255,65,0.06);
+  border: 2px solid var(--yellow); color: var(--yellow);
+  background: rgba(237,217,122,0.06);
   margin-bottom: 0.4rem;
 }
 
 .vaultNote {
-  font-size: 0.52rem; line-height: 1.5;
+  font-size: var(--fs-xs); line-height: 1.5;
   letter-spacing: 0.03em;
   padding: 0.4rem 0.5rem; margin-top: 0.4rem;
   border-left: 2px solid;
 }
 .institutionalNote { color: #A855F7; border-color: #A855F7; background: rgba(168,85,247,0.06); }
-.pendingNote       { color: #00FF41; border-color: #00FF41; background: rgba(0,255,65,0.04); }
+.pendingNote       { color: var(--yellow-dim); border-color: var(--yellow); background: rgba(237,217,122,0.04); }
 
 @media (max-width: 768px) {
   .grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
   .card { padding: 0.7rem 0.75rem; }
-  .asset { font-size: 0.85rem; }
 }
