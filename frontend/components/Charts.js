@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import {
-  LineChart, Line, AreaChart, Area,
+  AreaChart, Area,
   XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, ReferenceLine
 } from 'recharts';
@@ -205,14 +205,20 @@ export default function Charts({ snapshots }) {
           handlers={apy.handlers} sliceStart={apy.sliceStart} sliceEnd={apy.sliceEnd}
           totalLength={total} zoom={apy.zoom} pan={apy.pan}>
           <ResponsiveContainer width="100%" height={180}>
-            <LineChart data={apyData}>
+            <AreaChart data={apyData}>
+              <defs>
+                <linearGradient id="apyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%"  stopColor={GREEN} stopOpacity={0.3} />
+                  <stop offset="95%" stopColor={GREEN} stopOpacity={0} />
+                </linearGradient>
+              </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
               <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
               <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} unit="%" />
               <Tooltip content={<CustomTooltip />} />
-              <Line type="monotone" dataKey="APY" stroke={GREEN} dot={false} strokeWidth={2}
-                style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
-            </LineChart>
+              <Area type="monotone" dataKey="APY" stroke={GREEN} fill="url(#apyGrad)"
+                strokeWidth={2} dot={false} style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
+            </AreaChart>
           </ResponsiveContainer>
         </ChartCard>
 
@@ -233,7 +239,7 @@ export default function Charts({ snapshots }) {
               <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} />
               <Tooltip content={<CustomTooltip />} />
               <Area type="monotone" dataKey="TVL" stroke={GREEN} fill="url(#tvlGrad)"
-                strokeWidth={2} style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
+                strokeWidth={2} dot={false} style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartCard>
@@ -243,16 +249,22 @@ export default function Charts({ snapshots }) {
           handlers={util.handlers} sliceStart={util.sliceStart} sliceEnd={util.sliceEnd}
           totalLength={total} zoom={util.zoom} pan={util.pan}>
           <ResponsiveContainer width="100%" height={180}>
-            <LineChart data={utilData}>
+            <AreaChart data={utilData}>
+              <defs>
+                <linearGradient id="utilGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%"  stopColor={GREEN_DIM} stopOpacity={0.3} />
+                  <stop offset="95%" stopColor={GREEN_DIM} stopOpacity={0} />
+                </linearGradient>
+              </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
               <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
               <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} unit="%" domain={[0, 100]} />
               <Tooltip content={<CustomTooltip />} />
               <ReferenceLine y={80} stroke={YELLOW} strokeDasharray="4 4"
                 label={{ value: 'TARGET', fill: YELLOW, fontSize: 8 }} />
-              <Line type="monotone" dataKey="Utilization" stroke={GREEN_DIM} dot={false} strokeWidth={2}
-                style={{ filter: `drop-shadow(0 0 4px ${GREEN_DIM})` }} />
-            </LineChart>
+              <Area type="monotone" dataKey="Utilization" stroke={GREEN_DIM} fill="url(#utilGrad)"
+                strokeWidth={2} dot={false} style={{ filter: `drop-shadow(0 0 4px ${GREEN_DIM})` }} />
+            </AreaChart>
           </ResponsiveContainer>
         </ChartCard>
 
