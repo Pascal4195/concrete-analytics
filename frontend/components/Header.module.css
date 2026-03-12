@@ -1,51 +1,74 @@
 .header {
   position: relative; width: 100%; padding: 0;
-  border-bottom: 2px solid #00FF41;
-  box-shadow: 0 4px 30px rgba(0,255,65,0.3);
+  border-bottom: 2px solid var(--yellow);
+  box-shadow: 0 4px 30px var(--yellow-glow);
   background: transparent;
 }
+
 .statusBar {
   position: relative; z-index: 2;
   background: rgba(13,13,13,0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid #00FF41;
+  border-bottom: 1px solid var(--yellow);
   padding: 0.35rem 1.5rem;
-  font-size: 0.6rem; letter-spacing: 0.2em;
-  color: #00FF41;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  color: var(--yellow);
 }
+
 .heroWrap {
   position: relative; z-index: 2;
   text-align: center;
   padding: 2.5rem 1rem 1.5rem;
 }
+
 .title {
   display: flex; flex-direction: column;
   align-items: center; line-height: 1; margin-bottom: 1rem;
 }
+
+/* Main title keeps green glow — it's the hero, the terminal heartbeat */
 .titleMain {
   font-family: 'Orbitron', monospace;
   font-weight: 900;
   font-size: clamp(2.5rem, 8vw, 5rem);
-  color: #00FF41;
-  text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41, 0 0 40px #00FF41, 0 0 80px #00FF41;
+  color: var(--yellow);
+  text-shadow:
+    0 0 10px var(--yellow-glow),
+    0 0 20px var(--yellow-glow),
+    0 0 40px var(--yellow-glow),
+    0 0 80px rgba(237,217,122,0.3);
   letter-spacing: 0.05em; display: block;
 }
+
 .titleSub {
   font-family: 'Orbitron', monospace;
   font-weight: 700;
   font-size: clamp(1.5rem, 5vw, 3rem);
-  color: #00FF41;
-  text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41, 0 0 40px #00FF41;
+  color: var(--yellow-dim);
+  text-shadow:
+    0 0 10px var(--yellow-glow),
+    0 0 20px var(--yellow-glow);
   letter-spacing: 0.1em; display: block;
 }
+
 .subtitle {
-  font-size: 0.65rem; letter-spacing: 0.15em;
-  color: #00FF41; max-width: 700px; margin: 0 auto;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.15em;
+  color: var(--yellow-dim);
+  max-width: 700px; margin: 0 auto;
 }
+
 @media (max-width: 768px) {
-  .statusBar { font-size: 0.5rem; padding: 0.3rem 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .statusBar {
+    font-size: var(--fs-xs);
+    padding: 0.3rem 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .heroWrap { padding: 1.5rem 1rem 1rem; }
   .titleMain { font-size: clamp(2rem, 12vw, 3rem); }
   .titleSub  { font-size: clamp(1rem, 7vw, 1.8rem); }
-  .subtitle  { font-size: 0.55rem; letter-spacing: 0.08em; }
+  .subtitle  { font-size: var(--fs-xs); letter-spacing: 0.08em; }
 }
