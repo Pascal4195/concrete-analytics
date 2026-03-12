@@ -1,7 +1,6 @@
 .page { min-height: 100vh; background: transparent; }
 
 .main {
-  max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem 1.25rem 4rem;
 }
@@ -17,7 +16,7 @@
   -webkit-backdrop-filter: blur(6px);
   border: 4px solid #00FF41;
   box-shadow: 0 0 16px rgba(0,255,65,0.3);
-  font-size: 0.6rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.15em;
 }
 
@@ -28,15 +27,16 @@
 }
 .online  { background: #00FF41; box-shadow: 0 0 8px #00FF41; }
 .offline { background: #FF3131; box-shadow: 0 0 8px #FF3131; }
-.statusText { color: #00FF41; font-weight: bold; }
-.statusTime { margin-left: auto; color: #00FF41; }
+.statusText { color: #00FF41; font-weight: bold; font-size: var(--fs-xs); }
+.statusTime { margin-left: auto; color: #00FF41; font-size: var(--fs-xs); }
 
 .windowRow {
   display: flex; align-items: center;
   gap: 0.5rem; margin-bottom: 1.25rem;
 }
 .windowLabel {
-  font-size: 0.6rem; color: #00FF41;
+  font-size: var(--fs-xs);
+  color: #00FF41;
   letter-spacing: 0.15em; margin-right: 0.25rem;
   text-shadow: 0 0 8px #00FF41;
 }
@@ -47,7 +47,8 @@
   border: 2px solid #00FF41;
   color: #00FF41;
   padding: 0.35rem 0.9rem;
-  font-size: 0.65rem; letter-spacing: 0.15em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.15em;
   transition: box-shadow 0.15s ease;
   opacity: 0.55;
 }
@@ -68,17 +69,19 @@
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-left: 4px solid #00FF41;
-  font-size: 0.62rem;
+  font-size: var(--fs-xs);
 }
 .vaultInfoAsset {
   font-family: 'Orbitron', monospace; font-weight: 700;
   color: #00FF41; text-shadow: 0 0 10px #00FF41;
+  font-size: var(--fs-sm);
 }
-.vaultInfoAddr  { color: #00FF41; font-size: 0.55rem; word-break: break-all; }
-.vaultInfoRisk  { margin-left: auto; color: #00FF41; letter-spacing: 0.1em; }
+.vaultInfoAddr  { color: #00FF41; font-size: var(--fs-xs); word-break: break-all; }
+.vaultInfoRisk  { margin-left: auto; color: #00FF41; letter-spacing: 0.1em; font-size: var(--fs-xs); }
 
 .loading {
-  text-align: center; font-size: 0.7rem;
+  text-align: center;
+  font-size: var(--fs-sm);
   letter-spacing: 0.2em; color: #00FF41;
   padding: 1rem; margin-bottom: 1rem;
 }
@@ -92,17 +95,19 @@
   padding: 1.25rem; margin-bottom: 1rem;
 }
 .narrativeLabel {
-  font-size: 0.6rem; color: #00FF41;
+  font-size: var(--fs-xs);
+  color: #00FF41;
   letter-spacing: 0.2em; margin-bottom: 0.6rem;
   text-shadow: 0 0 8px #00FF41;
 }
 .narrativeText {
-  font-size: 0.65rem; color: #00FF41;
+  font-size: var(--fs-sm);
+  color: #00FF41;
   line-height: 1.8; letter-spacing: 0.05em;
 }
 
 .disclaimer {
-  font-size: 0.62rem;
+  font-size: var(--fs-xs);
   color: #FF3131;
   text-shadow: 0 0 8px rgba(255,49,49,0.6);
   letter-spacing: 0.08em; line-height: 1.7;
@@ -113,19 +118,6 @@
   -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 0 20px rgba(255,49,49,0.25);
   margin-top: 0.5rem;
-}
-
-@media (max-width: 768px) {
-  .main { padding: 1rem 0.85rem 3rem; }
-  .statusRow { font-size: 0.52rem; flex-wrap: wrap; gap: 0.4rem; }
-  .statusTime { width: 100%; margin-left: 0; margin-top: 0.2rem; }
-  .windowRow { margin-bottom: 1rem; flex-wrap: wrap; }
-  .windowBtn { padding: 0.3rem 0.65rem; font-size: 0.58rem; }
-  .vaultInfo { flex-wrap: wrap; gap: 0.4rem; }
-  .vaultInfoAddr { width: 100%; font-size: 0.48rem; }
-  .vaultInfoRisk { margin-left: 0; }
-  .narrativeText { font-size: 0.6rem; }
-  .disclaimer { font-size: 0.55rem; }
 }
 
 .footer {
@@ -140,16 +132,25 @@
 }
 .tm {
   display: flex; align-items: center; gap: 0.5rem;
-  font-size: 0.6rem; letter-spacing: 0.15em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.15em;
   color: #00FF41; text-decoration: none; transition: all 0.2s;
 }
 .tm:hover { text-shadow: 0 0 8px rgba(0,255,65,0.5); }
 .pfp { border-radius: 50%; border: 2px solid #00FF41; object-fit: cover; }
-.footerRight { font-size: 0.55rem; letter-spacing: 0.12em; color: #00FF41; }
+.footerRight { font-size: var(--fs-xs); letter-spacing: 0.12em; color: #00FF41; }
 
 @media (max-width: 768px) {
   .footer { justify-content: center; }
   .footerRight { display: none; }
+  .main { padding: 1rem 0.85rem 3rem; }
+  .statusRow { flex-wrap: wrap; gap: 0.4rem; }
+  .statusTime { width: 100%; margin-left: 0; margin-top: 0.2rem; }
+  .windowRow { margin-bottom: 1rem; flex-wrap: wrap; }
+  .windowBtn { padding: 0.3rem 0.65rem; }
+  .vaultInfo { flex-wrap: wrap; gap: 0.4rem; }
+  .vaultInfoAddr { width: 100%; }
+  .vaultInfoRisk { margin-left: 0; }
 }
 
 .tickerWrap {
@@ -165,7 +166,8 @@
 .ticker {
   display: inline-block;
   animation: tickerScroll 35s linear infinite;
-  font-size: 0.6rem; letter-spacing: 0.12em;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
   color: #00FF41; padding-left: 100%;
 }
 .ticker span { color: #00FF41; text-shadow: 0 0 6px rgba(0,255,65,0.5); }
