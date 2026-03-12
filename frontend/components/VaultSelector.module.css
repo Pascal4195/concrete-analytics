@@ -1,9 +1,10 @@
 .wrap { margin-bottom: 1.5rem; }
 
 .label {
-  font-size: var(--fs-xs); color: var(--yellow);
+  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  color: #EDD97A;
   letter-spacing: 0.2em; margin-bottom: 0.75rem;
-  text-shadow: 0 0 8px var(--yellow-glow);
+  text-shadow: 0 0 8px rgba(237,217,122,0.4);
 }
 
 .grid {
@@ -18,18 +19,16 @@
   background: rgba(0, 8, 0, 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 4px solid var(--yellow);
+  border: 4px solid #EDD97A;
   padding: 0.85rem 1rem;
   text-align: left;
   cursor: pointer;
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
-.card:hover {
-  box-shadow: 0 0 20px var(--yellow-glow);
-}
+.card:hover { box-shadow: 0 0 20px rgba(237,217,122,0.35); }
 
-/* Active card switches to green glow — live/selected state */
+/* Active card — green glow, feels live */
 .active {
   background: rgba(0, 255, 65, 0.06) !important;
   border-color: #00FF41 !important;
@@ -38,20 +37,13 @@
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow:
-      0 0 10px rgba(0,255,65,0.5),
-      0 0 25px rgba(0,255,65,0.2),
-      inset 0 0 15px rgba(0,255,65,0.04);
+    box-shadow: 0 0 10px rgba(0,255,65,0.5), 0 0 25px rgba(0,255,65,0.2), inset 0 0 15px rgba(0,255,65,0.04);
   }
   50% {
-    box-shadow:
-      0 0 20px rgba(0,255,65,0.9),
-      0 0 50px rgba(0,255,65,0.45),
-      inset 0 0 30px rgba(0,255,65,0.1);
+    box-shadow: 0 0 20px rgba(0,255,65,0.9), 0 0 50px rgba(0,255,65,0.45), inset 0 0 30px rgba(0,255,65,0.1);
   }
 }
 
-/* Glitch on click */
 .glitching {
   animation: glitch 0.15s steps(2) forwards !important;
 }
@@ -65,21 +57,13 @@
   100% { transform: translate(0, 0);      opacity: 1;   filter: none; }
 }
 
-/* Scan line sweep */
 .scanning { border-color: #00FF41 !important; }
 
 .scanLine {
   position: absolute;
   left: 0; top: 0;
   width: 100%; height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0,255,65,0.4) 20%,
-    #00FF41 50%,
-    rgba(0,255,65,0.4) 80%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, rgba(0,255,65,0.4) 20%, #00FF41 50%, rgba(0,255,65,0.4) 80%, transparent 100%);
   box-shadow: 0 0 12px #00FF41, 0 0 25px rgba(0,255,65,0.6);
   animation: scanSweep 0.5s ease-in forwards;
   z-index: 10;
@@ -94,15 +78,16 @@
 
 .asset {
   font-family: 'Orbitron', monospace;
-  font-size: var(--fs-lg); font-weight: 700;
-  color: var(--yellow); margin-bottom: 0.2rem;
+  font-size: clamp(0.85rem, 2.4vw, 1.10rem);
+  font-weight: 700;
+  color: #EDD97A; margin-bottom: 0.2rem;
 }
-.name { font-size: var(--fs-xs); letter-spacing: 0.1em; margin-bottom: 0.4rem; color: var(--yellow-dim); }
-.risk { font-size: var(--fs-xs); letter-spacing: 0.15em; }
+.name { font-size: clamp(0.58rem, 1.3vw, 0.75rem); letter-spacing: 0.1em; margin-bottom: 0.4rem; color: #C9B55A; }
+.risk { font-size: clamp(0.55rem, 1.2vw, 0.72rem); letter-spacing: 0.15em; }
 
 .institutionalBadge {
   display: inline-block;
-  font-size: var(--fs-xs); font-weight: bold;
+  font-size: clamp(0.50rem, 1.1vw, 0.65rem); font-weight: bold;
   letter-spacing: 0.15em; padding: 0.15rem 0.4rem;
   border: 2px solid #A855F7; color: #A855F7;
   background: rgba(168,85,247,0.08);
@@ -112,21 +97,21 @@
 
 .pendingBadge {
   display: inline-block;
-  font-size: var(--fs-xs); font-weight: bold;
+  font-size: clamp(0.50rem, 1.1vw, 0.65rem); font-weight: bold;
   letter-spacing: 0.15em; padding: 0.15rem 0.4rem;
-  border: 2px solid var(--yellow); color: var(--yellow);
+  border: 2px solid #EDD97A; color: #EDD97A;
   background: rgba(237,217,122,0.06);
   margin-bottom: 0.4rem;
 }
 
 .vaultNote {
-  font-size: var(--fs-xs); line-height: 1.5;
+  font-size: clamp(0.50rem, 1.1vw, 0.65rem); line-height: 1.5;
   letter-spacing: 0.03em;
   padding: 0.4rem 0.5rem; margin-top: 0.4rem;
   border-left: 2px solid;
 }
 .institutionalNote { color: #A855F7; border-color: #A855F7; background: rgba(168,85,247,0.06); }
-.pendingNote       { color: var(--yellow-dim); border-color: var(--yellow); background: rgba(237,217,122,0.04); }
+.pendingNote       { color: #C9B55A; border-color: #EDD97A; background: rgba(237,217,122,0.04); }
 
 @media (max-width: 768px) {
   .grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
