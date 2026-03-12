@@ -167,11 +167,18 @@ function ChartCard({ title, desc, children, handlers, sliceStart, sliceEnd, tota
 export default function Charts({ snapshots }) {
   // Fix: force re-render after mount so ResponsiveContainer
   // measures its size correctly on first render (known Recharts issue)
+  // NOTE: must be before any early returns to satisfy React's rules of hooks
   const [ready, setReady] = useState(false);
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 50);
     return () => clearTimeout(t);
   }, []);
+
+  // usePanZoom calls must be before any early return — rules of hooks
+  const total = snapshots ? snapshots.length : 0;
+  const apy  = usePanZoom(total);
+  const tvl  = usePanZoom(total);
+  const util = usePanZoom(total);
 
   if (!snapshots || snapshots.length < 2) {
     return (
@@ -191,11 +198,6 @@ export default function Charts({ snapshots }) {
     TVL: parseFloat(s.tvl),
     Utilization: parseFloat((s.utilization * 100).toFixed(2)),
   }));
-
-  const total = allData.length;
-  const apy  = usePanZoom(total);
-  const tvl  = usePanZoom(total);
-  const util = usePanZoom(total);
 
   const apyData  = allData.slice(apy.sliceStart,  apy.sliceEnd);
   const tvlData  = allData.slice(tvl.sliceStart,  tvl.sliceEnd);
