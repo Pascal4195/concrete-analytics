@@ -82,12 +82,20 @@
   font-weight: 700;
   color: #EDD97A; margin-bottom: 0.2rem;
 }
-.name { font-size: clamp(0.58rem, 1.3vw, 0.75rem); letter-spacing: 0.1em; margin-bottom: 0.4rem; color: #C9B55A; }
-.risk { font-size: clamp(0.55rem, 1.2vw, 0.72rem); letter-spacing: 0.15em; }
+
+/* Bumped up */
+.name {
+  font-size: clamp(0.68rem, 1.7vw, 0.90rem);
+  letter-spacing: 0.1em; margin-bottom: 0.4rem; color: #C9B55A;
+}
+.risk {
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
+  letter-spacing: 0.15em;
+}
 
 .institutionalBadge {
   display: inline-block;
-  font-size: clamp(0.50rem, 1.1vw, 0.65rem); font-weight: bold;
+  font-size: clamp(0.55rem, 1.2vw, 0.70rem); font-weight: bold;
   letter-spacing: 0.15em; padding: 0.15rem 0.4rem;
   border: 2px solid #A855F7; color: #A855F7;
   background: rgba(168,85,247,0.08);
@@ -97,15 +105,16 @@
 
 .pendingBadge {
   display: inline-block;
-  font-size: clamp(0.50rem, 1.1vw, 0.65rem); font-weight: bold;
+  font-size: clamp(0.55rem, 1.2vw, 0.70rem); font-weight: bold;
   letter-spacing: 0.15em; padding: 0.15rem 0.4rem;
   border: 2px solid #EDD97A; color: #EDD97A;
   background: rgba(237,217,122,0.06);
   margin-bottom: 0.4rem;
 }
 
+/* Bumped up */
 .vaultNote {
-  font-size: clamp(0.50rem, 1.1vw, 0.65rem); line-height: 1.5;
+  font-size: clamp(0.60rem, 1.4vw, 0.78rem); line-height: 1.5;
   letter-spacing: 0.03em;
   padding: 0.4rem 0.5rem; margin-top: 0.4rem;
   border-left: 2px solid;
