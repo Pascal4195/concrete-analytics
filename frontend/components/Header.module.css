@@ -1,7 +1,7 @@
 .header {
   position: relative; width: 100%; padding: 0;
-  border-bottom: 2px solid var(--yellow);
-  box-shadow: 0 4px 30px var(--yellow-glow);
+  border-bottom: 2px solid #EDD97A;
+  box-shadow: 0 4px 30px rgba(237,217,122,0.4);
   background: transparent;
 }
 
@@ -9,11 +9,11 @@
   position: relative; z-index: 2;
   background: rgba(13,13,13,0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--yellow);
+  border-bottom: 1px solid #EDD97A;
   padding: 0.35rem 1.5rem;
-  font-size: var(--fs-xs);
+  font-size: clamp(0.55rem, 1.4vw, 0.75rem);
   letter-spacing: 0.2em;
-  color: var(--yellow);
+  color: #EDD97A;
 }
 
 .heroWrap {
@@ -27,17 +27,16 @@
   align-items: center; line-height: 1; margin-bottom: 1rem;
 }
 
-/* Main title keeps green glow — it's the hero, the terminal heartbeat */
 .titleMain {
   font-family: 'Orbitron', monospace;
   font-weight: 900;
   font-size: clamp(2.5rem, 8vw, 5rem);
-  color: var(--yellow);
+  color: #EDD97A;
   text-shadow:
-    0 0 10px var(--yellow-glow),
-    0 0 20px var(--yellow-glow),
-    0 0 40px var(--yellow-glow),
-    0 0 80px rgba(237,217,122,0.3);
+    0 0 10px rgba(237,217,122,0.8),
+    0 0 20px rgba(237,217,122,0.6),
+    0 0 40px rgba(237,217,122,0.4),
+    0 0 80px rgba(237,217,122,0.2);
   letter-spacing: 0.05em; display: block;
 }
 
@@ -45,23 +44,23 @@
   font-family: 'Orbitron', monospace;
   font-weight: 700;
   font-size: clamp(1.5rem, 5vw, 3rem);
-  color: var(--yellow-dim);
+  color: #C9B55A;
   text-shadow:
-    0 0 10px var(--yellow-glow),
-    0 0 20px var(--yellow-glow);
+    0 0 10px rgba(237,217,122,0.5),
+    0 0 20px rgba(237,217,122,0.3);
   letter-spacing: 0.1em; display: block;
 }
 
 .subtitle {
-  font-size: var(--fs-xs);
+  font-size: clamp(0.55rem, 1.4vw, 0.75rem);
   letter-spacing: 0.15em;
-  color: var(--yellow-dim);
+  color: #C9B55A;
   max-width: 700px; margin: 0 auto;
 }
 
 @media (max-width: 768px) {
   .statusBar {
-    font-size: var(--fs-xs);
+    font-size: 0.55rem;
     padding: 0.3rem 0.75rem;
     white-space: nowrap;
     overflow: hidden;
@@ -70,5 +69,5 @@
   .heroWrap { padding: 1.5rem 1rem 1rem; }
   .titleMain { font-size: clamp(2rem, 12vw, 3rem); }
   .titleSub  { font-size: clamp(1rem, 7vw, 1.8rem); }
-  .subtitle  { font-size: var(--fs-xs); letter-spacing: 0.08em; }
+  .subtitle  { font-size: 0.6rem; letter-spacing: 0.08em; }
 }
