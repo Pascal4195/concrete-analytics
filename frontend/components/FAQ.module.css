@@ -1,7 +1,7 @@
 .wrap { margin-bottom: 1rem; }
 
 .label {
-  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  font-size: clamp(0.65rem, 1.6vw, 0.85rem);
   color: #EDD97A;
   letter-spacing: 0.2em;
   margin-bottom: 0.75rem;
@@ -44,14 +44,14 @@
 }
 
 .prompt {
-  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
   color: #EDD97A;
   flex-shrink: 0;
 }
 
 .questionText {
   font-family: 'Orbitron', monospace;
-  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
   font-weight: 700;
   color: #EDD97A;
   letter-spacing: 0.08em;
@@ -59,11 +59,12 @@
   transition: text-shadow 0.2s ease;
 }
 
+/* Bumped up */
 .answer {
   padding: 0.75rem 1rem 0.85rem 2.2rem;
-  font-size: clamp(0.62rem, 1.5vw, 0.85rem);
+  font-size: clamp(0.70rem, 1.8vw, 0.95rem);
   color: #EDD97A;
-  line-height: 1.8;
+  line-height: 1.9;
   letter-spacing: 0.04em;
   border-top: 1px solid rgba(237, 217, 122, 0.15);
   animation: expandIn 0.2s ease forwards;
@@ -71,7 +72,7 @@
 
 .cursor {
   color: #C9B55A;
-  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
 }
 
 @keyframes expandIn {
