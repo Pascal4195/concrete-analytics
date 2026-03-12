@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import {
   LineChart, Line, AreaChart, Area,
   XAxis, YAxis, CartesianGrid, Tooltip,
@@ -165,6 +165,14 @@ function ChartCard({ title, desc, children, handlers, sliceStart, sliceEnd, tota
 }
 
 export default function Charts({ snapshots }) {
+  // Fix: force re-render after mount so ResponsiveContainer
+  // measures its size correctly on first render (known Recharts issue)
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 50);
+    return () => clearTimeout(t);
+  }, []);
+
   if (!snapshots || snapshots.length < 2) {
     return (
       <div className={styles.wrap}>
@@ -198,65 +206,68 @@ export default function Charts({ snapshots }) {
       <div className={styles.label}>// CHART LAYER</div>
       <div className={styles.chartHint}>← DRAG HORIZONTALLY TO PAN · PINCH TO ZOOM →</div>
 
-      <div className={styles.grid}>
+      {/* Charts only render once `ready` is true — guarantees correct sizing */}
+      {ready && (
+        <div className={styles.grid}>
 
-        {/* APY Chart */}
-        <ChartCard title="APY OVER TIME" desc="How stable is yield delivery?"
-          handlers={apy.handlers} sliceStart={apy.sliceStart} sliceEnd={apy.sliceEnd}
-          totalLength={total} zoom={apy.zoom} pan={apy.pan}>
-          <ResponsiveContainer width="100%" height={180}>
-            <LineChart data={apyData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
-              <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
-              <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} unit="%" />
-              <Tooltip content={<CustomTooltip />} />
-              <Line type="monotone" dataKey="APY" stroke={GREEN} dot={false} strokeWidth={2}
-                style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
-            </LineChart>
-          </ResponsiveContainer>
-        </ChartCard>
+          {/* APY Chart */}
+          <ChartCard title="APY OVER TIME" desc="How stable is yield delivery?"
+            handlers={apy.handlers} sliceStart={apy.sliceStart} sliceEnd={apy.sliceEnd}
+            totalLength={total} zoom={apy.zoom} pan={apy.pan}>
+            <ResponsiveContainer width="100%" height={180}>
+              <LineChart data={apyData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
+                <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
+                <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} unit="%" />
+                <Tooltip content={<CustomTooltip />} />
+                <Line type="monotone" dataKey="APY" stroke={GREEN} dot={false} strokeWidth={2}
+                  style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-        {/* TVL Chart */}
-        <ChartCard title="TVL OVER TIME" desc="Is capital growing or leaving?"
-          handlers={tvl.handlers} sliceStart={tvl.sliceStart} sliceEnd={tvl.sliceEnd}
-          totalLength={total} zoom={tvl.zoom} pan={tvl.pan}>
-          <ResponsiveContainer width="100%" height={180}>
-            <AreaChart data={tvlData}>
-              <defs>
-                <linearGradient id="tvlGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%"  stopColor={GREEN} stopOpacity={0.3} />
-                  <stop offset="95%" stopColor={GREEN} stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
-              <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
-              <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} />
-              <Tooltip content={<CustomTooltip />} />
-              <Area type="monotone" dataKey="TVL" stroke={GREEN} fill="url(#tvlGrad)"
-                strokeWidth={2} style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
-            </AreaChart>
-          </ResponsiveContainer>
-        </ChartCard>
+          {/* TVL Chart */}
+          <ChartCard title="TVL OVER TIME" desc="Is capital growing or leaving?"
+            handlers={tvl.handlers} sliceStart={tvl.sliceStart} sliceEnd={tvl.sliceEnd}
+            totalLength={total} zoom={tvl.zoom} pan={tvl.pan}>
+            <ResponsiveContainer width="100%" height={180}>
+              <AreaChart data={tvlData}>
+                <defs>
+                  <linearGradient id="tvlGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%"  stopColor={GREEN} stopOpacity={0.3} />
+                    <stop offset="95%" stopColor={GREEN} stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
+                <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
+                <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} />
+                <Tooltip content={<CustomTooltip />} />
+                <Area type="monotone" dataKey="TVL" stroke={GREEN} fill="url(#tvlGrad)"
+                  strokeWidth={2} style={{ filter: `drop-shadow(0 0 4px ${GREEN})` }} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-        {/* Utilization Chart */}
-        <ChartCard title="UTILIZATION OVER TIME" desc="Is capital consistently deployed?"
-          handlers={util.handlers} sliceStart={util.sliceStart} sliceEnd={util.sliceEnd}
-          totalLength={total} zoom={util.zoom} pan={util.pan}>
-          <ResponsiveContainer width="100%" height={180}>
-            <LineChart data={utilData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
-              <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
-              <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} unit="%" domain={[0, 100]} />
-              <Tooltip content={<CustomTooltip />} />
-              <ReferenceLine y={80} stroke={YELLOW} strokeDasharray="4 4"
-                label={{ value: 'TARGET', fill: YELLOW, fontSize: 8 }} />
-              <Line type="monotone" dataKey="Utilization" stroke={GREEN_DIM} dot={false} strokeWidth={2}
-                style={{ filter: `drop-shadow(0 0 4px ${GREEN_DIM})` }} />
-            </LineChart>
-          </ResponsiveContainer>
-        </ChartCard>
+          {/* Utilization Chart */}
+          <ChartCard title="UTILIZATION OVER TIME" desc="Is capital consistently deployed?"
+            handlers={util.handlers} sliceStart={util.sliceStart} sliceEnd={util.sliceEnd}
+            totalLength={total} zoom={util.zoom} pan={util.pan}>
+            <ResponsiveContainer width="100%" height={180}>
+              <LineChart data={utilData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(237,217,122,0.1)" />
+                <XAxis dataKey="time" tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} />
+                <YAxis tick={{ fill: YELLOW_DIM, fontSize: 9 }} tickLine={false} axisLine={false} unit="%" domain={[0, 100]} />
+                <Tooltip content={<CustomTooltip />} />
+                <ReferenceLine y={80} stroke={YELLOW} strokeDasharray="4 4"
+                  label={{ value: 'TARGET', fill: YELLOW, fontSize: 8 }} />
+                <Line type="monotone" dataKey="Utilization" stroke={GREEN_DIM} dot={false} strokeWidth={2}
+                  style={{ filter: `drop-shadow(0 0 4px ${GREEN_DIM})` }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-      </div>
+        </div>
+      )}
     </div>
   );
 }
