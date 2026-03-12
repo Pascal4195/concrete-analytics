@@ -9,6 +9,19 @@
   --border: #00FF41;
   --text-dim: #00cc33;
   --red: #FF3131;
+
+  /* ── Responsive font scale ──
+     clamp(min, preferred, max)
+     min    = mobile floor
+     preferred = scales with viewport width
+     max    = desktop ceiling
+  */
+  --fs-xs:   clamp(0.65rem, 1.8vw, 0.75rem);
+  --fs-sm:   clamp(0.70rem, 2vw,   0.85rem);
+  --fs-base: clamp(0.75rem, 2.2vw, 0.95rem);
+  --fs-lg:   clamp(1.00rem, 3vw,   1.30rem);
+  --fs-xl:   clamp(1.20rem, 4vw,   1.60rem);
+  --fs-2xl:  clamp(1.60rem, 5vw,   2.20rem);
 }
 
 * {
@@ -22,9 +35,23 @@ body {
   background: #0D0D0D;
   color: #00FF41;
   font-family: 'Share Tech Mono', monospace;
+  font-size: var(--fs-base);
   overflow-x: hidden;
 }
 
+/* ── CENTERED NARROW COLUMN ──
+   Mimics mobile layout on all screen sizes.
+   Max 480px keeps it feeling like a terminal — tight and intentional.
+*/
+#__next {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── MOAI BACKGROUND ── */
 .moai-bg {
   position: fixed;
   inset: 0;
@@ -59,21 +86,19 @@ body {
   z-index: 2;
 }
 
-#__next {
-  position: relative;
-  z-index: 3;
-  min-height: 100vh;
+button {
+  font-family: 'Share Tech Mono', monospace;
+  cursor: pointer;
 }
-
-button { font-family: 'Share Tech Mono', monospace; cursor: pointer; }
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0D0D0D; }
 ::-webkit-scrollbar-thumb { background: #00FF41; }
 
+/* ── ANIMATIONS ── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  50%       { opacity: 0; }
 }
 
 @keyframes pulse-border {
