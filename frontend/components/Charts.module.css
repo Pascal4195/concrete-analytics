@@ -1,14 +1,14 @@
 .wrap { margin-bottom: 2rem; }
 
 .label {
-  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  font-size: clamp(0.65rem, 1.6vw, 0.85rem);
   color: #EDD97A;
   letter-spacing: 0.2em; margin-bottom: 0.4rem;
   text-shadow: 0 0 8px rgba(237,217,122,0.4);
 }
 
 .chartHint {
-  font-size: clamp(0.55rem, 1.2vw, 0.72rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
   color: #C9B55A;
   letter-spacing: 0.15em; margin-bottom: 0.75rem;
   opacity: 0.7;
@@ -16,7 +16,7 @@
 
 .empty {
   border: 4px solid #EDD97A; padding: 2rem;
-  text-align: center; font-size: clamp(0.65rem, 1.6vw, 0.90rem);
+  text-align: center; font-size: clamp(0.70rem, 1.8vw, 0.95rem);
   color: #EDD97A; letter-spacing: 0.1em;
   background: rgba(0, 8, 0, 0.45);
   backdrop-filter: blur(6px);
@@ -43,14 +43,16 @@
 
 .chartTitle {
   font-family: 'Orbitron', monospace;
-  font-size: clamp(0.65rem, 1.6vw, 0.90rem);
+  font-size: clamp(0.70rem, 1.8vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 0.1em; margin-bottom: 0.2rem;
   color: #EDD97A;
   text-shadow: 0 0 8px rgba(237,217,122,0.4);
 }
+
+/* Bumped up */
 .chartDesc {
-  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  font-size: clamp(0.68rem, 1.7vw, 0.92rem);
   color: #C9B55A;
   letter-spacing: 0.08em; margin-bottom: 0.75rem;
 }
@@ -68,7 +70,7 @@
   background: rgba(0, 8, 0, 0.6);
   border: 1px solid #EDD97A;
   color: #EDD97A;
-  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
   padding: 0.2rem 0.5rem;
   cursor: pointer;
   letter-spacing: 0.05em;
@@ -84,7 +86,7 @@
 
 .chartRange {
   margin-left: auto;
-  font-size: clamp(0.55rem, 1.2vw, 0.72rem);
+  font-size: clamp(0.58rem, 1.3vw, 0.78rem);
   color: #C9B55A;
   letter-spacing: 0.1em;
 }
@@ -96,12 +98,12 @@
   border: 2px solid #EDD97A;
   padding: 0.5rem 0.75rem;
   font-family: 'Share Tech Mono', monospace;
-  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
   color: #EDD97A;
 }
 .tooltipTime {
   color: #EDD97A;
-  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
   margin-bottom: 0.25rem; letter-spacing: 0.1em;
 }
 
