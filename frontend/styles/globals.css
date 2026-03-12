@@ -1,27 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
 
 :root {
-  --green: #00FF41;
-  --green-dim: #00cc33;
-  --green-glow: rgba(0, 255, 65, 0.4);
-  --bg: #0D0D0D;
-  --card-bg: rgba(0, 8, 0, 0.45);
-  --border: #00FF41;
-  --text-dim: #00cc33;
-  --red: #FF3131;
+  /* ── CONCRETE BRAND YELLOW ── */
+  --yellow:        #EDD97A;
+  --yellow-dim:    #C9B55A;
+  --yellow-glow:   rgba(237, 217, 122, 0.4);
+
+  /* ── TERMINAL GREEN (live data) ── */
+  --green:         #00FF41;
+  --green-dim:     #00cc33;
+  --green-glow:    rgba(0, 255, 65, 0.4);
+
+  /* ── BASE ── */
+  --bg:            #0D0D0D;
+  --card-bg:       rgba(0, 8, 0, 0.45);
+  --border:        #EDD97A;
+  --text-dim:      #C9B55A;
+  --red:           #FF3131;
 
   /* ── Responsive font scale ──
-     clamp(min, preferred, max)
-     min    = mobile floor
-     preferred = scales with viewport width
-     max    = desktop ceiling
+     Scales smoothly from mobile → desktop
   */
-  --fs-xs:   clamp(0.65rem, 1.8vw, 0.75rem);
-  --fs-sm:   clamp(0.70rem, 2vw,   0.85rem);
-  --fs-base: clamp(0.75rem, 2.2vw, 0.95rem);
-  --fs-lg:   clamp(1.00rem, 3vw,   1.30rem);
-  --fs-xl:   clamp(1.20rem, 4vw,   1.60rem);
-  --fs-2xl:  clamp(1.60rem, 5vw,   2.20rem);
+  --fs-xs:   clamp(0.65rem,  1.4vw, 0.85rem);
+  --fs-sm:   clamp(0.72rem,  1.6vw, 0.95rem);
+  --fs-base: clamp(0.80rem,  1.8vw, 1.05rem);
+  --fs-lg:   clamp(1.00rem,  2.4vw, 1.40rem);
+  --fs-xl:   clamp(1.20rem,  3.2vw, 1.80rem);
+  --fs-2xl:  clamp(1.60rem,  4.5vw, 2.40rem);
 }
 
 * {
@@ -33,22 +38,10 @@ html, body { height: 100%; }
 body {
   min-height: 100vh;
   background: #0D0D0D;
-  color: #00FF41;
+  color: var(--yellow);
   font-family: 'Share Tech Mono', monospace;
   font-size: var(--fs-base);
   overflow-x: hidden;
-}
-
-/* ── CENTERED NARROW COLUMN ──
-   Mimics mobile layout on all screen sizes.
-   Max 480px keeps it feeling like a terminal — tight and intentional.
-*/
-#__next {
-  position: relative;
-  z-index: 3;
-  min-height: 100vh;
-  max-width: 480px;
-  margin: 0 auto;
 }
 
 /* ── MOAI BACKGROUND ── */
@@ -62,7 +55,7 @@ body {
   pointer-events: none;
   z-index: 0;
   mix-blend-mode: screen;
-  filter: sepia(1) hue-rotate(90deg) saturate(4) brightness(0.35);
+  filter: sepia(1) hue-rotate(10deg) saturate(3) brightness(0.30);
   image-rendering: crisp-edges;
 }
 
@@ -86,6 +79,12 @@ body {
   z-index: 2;
 }
 
+#__next {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+}
+
 button {
   font-family: 'Share Tech Mono', monospace;
   cursor: pointer;
@@ -93,7 +92,7 @@ button {
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #0D0D0D; }
-::-webkit-scrollbar-thumb { background: #00FF41; }
+::-webkit-scrollbar-thumb { background: var(--yellow); }
 
 /* ── ANIMATIONS ── */
 @keyframes blink {
@@ -102,8 +101,8 @@ button {
 }
 
 @keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 10px rgba(0,255,65,0.4), inset 0 0 8px rgba(0,255,65,0.03); }
-  50%       { box-shadow: 0 0 25px rgba(0,255,65,0.7), inset 0 0 14px rgba(0,255,65,0.08); }
+  0%, 100% { box-shadow: 0 0 10px var(--yellow-glow), inset 0 0 8px rgba(237,217,122,0.03); }
+  50%       { box-shadow: 0 0 25px var(--yellow-glow), inset 0 0 14px rgba(237,217,122,0.08); }
 }
 
 @keyframes fadeIn {
