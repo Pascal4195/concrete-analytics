@@ -168,9 +168,9 @@ export default function Charts({ snapshots }) {
   // Fix: force re-render after mount so ResponsiveContainer
   // measures its size correctly on first render (known Recharts issue)
   // NOTE: must be before any early returns to satisfy React's rules of hooks
-  const [ready, setReady] = useState(false);
+  const [tick, setTick] = useState(0);
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 50);
+    const t = setTimeout(() => setTick(1), 100);
     return () => clearTimeout(t);
   }, []);
 
@@ -208,9 +208,7 @@ export default function Charts({ snapshots }) {
       <div className={styles.label}>// CHART LAYER</div>
       <div className={styles.chartHint}>← DRAG HORIZONTALLY TO PAN · PINCH TO ZOOM →</div>
 
-      {/* Charts only render once `ready` is true — guarantees correct sizing */}
-      {ready && (
-        <div className={styles.grid}>
+      <div key={tick} className={styles.grid}>
 
           {/* APY Chart */}
           <ChartCard title="APY OVER TIME" desc="How stable is yield delivery?"
@@ -269,7 +267,6 @@ export default function Charts({ snapshots }) {
           </ChartCard>
 
         </div>
-      )}
     </div>
   );
 }
