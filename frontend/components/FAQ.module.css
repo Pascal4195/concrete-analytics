@@ -1,11 +1,11 @@
 .wrap { margin-bottom: 1rem; }
 
 .label {
-  font-size: var(--fs-xs);
-  color: var(--yellow);
+  font-size: clamp(0.60rem, 1.4vw, 0.80rem);
+  color: #EDD97A;
   letter-spacing: 0.2em;
   margin-bottom: 0.75rem;
-  text-shadow: 0 0 8px var(--yellow-glow);
+  text-shadow: 0 0 8px rgba(237,217,122,0.4);
 }
 
 .list {
@@ -23,8 +23,8 @@
 }
 
 .itemOpen {
-  border-color: var(--yellow);
-  box-shadow: 0 0 12px var(--yellow-glow);
+  border-color: #EDD97A;
+  box-shadow: 0 0 12px rgba(237,217,122,0.3);
 }
 
 .question {
@@ -40,20 +40,20 @@
 }
 
 .question:hover .questionText {
-  text-shadow: 0 0 8px var(--yellow-glow);
+  text-shadow: 0 0 8px rgba(237,217,122,0.5);
 }
 
 .prompt {
-  font-size: var(--fs-xs);
-  color: var(--yellow);
+  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  color: #EDD97A;
   flex-shrink: 0;
 }
 
 .questionText {
   font-family: 'Orbitron', monospace;
-  font-size: var(--fs-xs);
+  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
   font-weight: 700;
-  color: var(--yellow);
+  color: #EDD97A;
   letter-spacing: 0.08em;
   line-height: 1.4;
   transition: text-shadow 0.2s ease;
@@ -61,8 +61,8 @@
 
 .answer {
   padding: 0.75rem 1rem 0.85rem 2.2rem;
-  font-size: var(--fs-sm);
-  color: var(--yellow);
+  font-size: clamp(0.62rem, 1.5vw, 0.85rem);
+  color: #EDD97A;
   line-height: 1.8;
   letter-spacing: 0.04em;
   border-top: 1px solid rgba(237, 217, 122, 0.15);
@@ -70,8 +70,8 @@
 }
 
 .cursor {
-  color: var(--yellow-dim);
-  font-size: var(--fs-xs);
+  color: #C9B55A;
+  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
 }
 
 @keyframes expandIn {
