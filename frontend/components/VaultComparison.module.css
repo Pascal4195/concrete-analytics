@@ -32,11 +32,16 @@
 }
 .legendItem {
   display: flex; align-items: center; gap: 0.4rem;
-  font-size: clamp(0.58rem, 1.3vw, 0.75rem);
+  font-size: clamp(0.62rem, 1.5vw, 0.82rem);
   letter-spacing: 0.1em; color: #EDD97A;
 }
 .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.eff { font-size: clamp(0.55rem, 1.2vw, 0.72rem); color: #C9B55A; }
+
+/* Bumped up */
+.eff {
+  font-size: clamp(0.62rem, 1.5vw, 0.80rem);
+  color: #C9B55A;
+}
 
 @media (max-width: 768px) {
   .inner { padding: 0.85rem; }
