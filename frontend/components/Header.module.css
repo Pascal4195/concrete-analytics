@@ -51,8 +51,9 @@
   letter-spacing: 0.1em; display: block;
 }
 
+/* Bumped up */
 .subtitle {
-  font-size: clamp(0.55rem, 1.4vw, 0.75rem);
+  font-size: clamp(0.68rem, 1.7vw, 0.90rem);
   letter-spacing: 0.15em;
   color: #C9B55A;
   max-width: 700px; margin: 0 auto;
@@ -69,5 +70,5 @@
   .heroWrap { padding: 1.5rem 1rem 1rem; }
   .titleMain { font-size: clamp(2rem, 12vw, 3rem); }
   .titleSub  { font-size: clamp(1rem, 7vw, 1.8rem); }
-  .subtitle  { font-size: 0.6rem; letter-spacing: 0.08em; }
+  .subtitle  { font-size: clamp(0.65rem, 1.5vw, 0.82rem); letter-spacing: 0.08em; }
 }
